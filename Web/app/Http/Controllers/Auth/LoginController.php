@@ -20,12 +20,17 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
+    public function showLoginForm(){
+      return View('auth.login-user');
+    }
+
+
     /**
      * Where to redirect users after login.
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -35,5 +40,9 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    public function showUserTypeSelection(){
+      return view('userTypeSelection')->with('action', 'login');
     }
 }

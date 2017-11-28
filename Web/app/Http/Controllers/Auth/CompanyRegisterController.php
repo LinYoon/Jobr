@@ -1,51 +1,47 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
+use Illuminate\Http\Request;
 
-use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Foundation\Auth\RegistersUsers;
+use Auth;
+use App\Company;
 
-class RegisterController extends Controller
+
+class CompanyRegisterController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
     | Register Controller
     |--------------------------------------------------------------------------
     |
-    | This controller handles the registration of new users as well as their
-    | validation and creation. By default this controller uses a trait to
-    | provide this functionality without requiring any additional code.
+    | This controller handles the registration of new companies as well as their
+    | validation and creation.
     |
     */
 
-    use RegistersUsers;
-
+    public function __construct(){
+      $this->middleware('guest:company');
+    }
 
     public function showRegistrationForm(){
-      return view('auth.register-user');
+      return view('auth.register-company');
     }
 
+    public function register(Request $request){
+      $this->validator($request->all())->validate();
 
-    /**
-     * Where to redirect users after registration.
-     *
-     * @var string
-     */
+     //Create seller
+      $company = $this->create($request->all());
 
-    //TODO verify email
-    protected $redirectTo = '/';
+      //Authenticates seller
+      $this->guard()->login($company);
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('guest');
+      //TODO redirect to verify email page
+      return redirect(route('company.dashboard'));
     }
+
 
     /**
      * Get a validator for an incoming registration request.
@@ -56,8 +52,7 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'first_name' => 'required|string|max:255',
-            'last_name' => 'required|string|max:255',
+            'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
         ]);
@@ -67,19 +62,20 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return \App\User
+     * @return \App\Company
      */
     protected function create(array $data)
     {
-        return User::create([
-            'first_name' => $data['first_name'],
-            'last_name' => $data['last_name'],
+        return Company::create([
+            'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
     }
 
-    public function showUserTypeSelection(){
-      return view('userTypeSelection')->with('action', 'register');
-    }
+    //Get the guard to authenticate Seller
+   protected function guard()
+   {
+       return Auth::guard('company');
+   }
 }

@@ -11,10 +11,24 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'PagesController@index')->name('home');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::prefix('login')->group(function(){
+  Route::get('/user', 'Auth\LoginController@showLoginForm')->name('login.user');
+  Route::post('/user', 'Auth\LoginController@login')->name('login.user.submit');
+  Route::get('/company', 'Auth\CompanyLoginController@showLoginForm')->name('login.company');
+  Route::post('/company', 'Auth\CompanyLoginController@login')->name('login.company.submit');
+  Route::get('/', 'Auth\LoginController@showUserTypeSelection')->name('login');
+});
+
+Route::prefix('register')->group(function(){
+  Route::get('/user', 'Auth\RegisterController@showRegistrationForm')->name('register.user');
+  Route::post('/user', 'Auth\RegisterController@register')->name('register.user.submit');
+  Route::get('/company', 'Auth\CompanyRegisterController@showRegistrationForm')->name('register.company');
+  Route::post('/company', 'Auth\CompanyRegisterController@register')->name('register.company.submit');
+  Route::get('/', 'Auth\RegisterController@showUserTypeSelection')->name('register');
+});
+
+Route::get('/company-dashboard', "CompanyController@index")->name('company.dashboard');

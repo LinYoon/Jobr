@@ -58,17 +58,35 @@
                                 </a>
 
                                 <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
 
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
+                                  @if(Auth::guard('company')->check())
+                                    <li>
+                                      <a href="{{ route('company.profile', Auth::guard('company')->user()->id) }}">
+                                          Profile
+                                      </a>
                                     </li>
+                                    <li>
+                                      <a href="{{ route('company.dashboard')}}">Dashoard</a>
+                                    </li>
+                                  @else
+                                    <li>
+                                      <a href="{{ route('user.profile', Auth::user()->id) }}">
+                                          Profile
+                                      </a>
+                                    </li>
+                                  @endif
+
+                                  <li>
+                                      <a href="{{ route('logout') }}"
+                                          onclick="event.preventDefault();
+                                                   document.getElementById('logout-form').submit();">
+                                          Logout
+                                      </a>
+
+                                      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                          {{ csrf_field() }}
+                                      </form>
+                                  </li>
                                 </ul>
                             </li>
                         @endguest

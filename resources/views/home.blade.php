@@ -3,15 +3,21 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Home</div>
-
-                <div class="panel-body">
-                    <h1>Place to find your new shit job</h1>
-                </div>
-            </div>
+      <div class="col-md-2">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            regions <br>categories<br>wages
+          </div>
         </div>
+      </div>
+
+      <div class="col-md-10">
+
+        <!-- foreach job offer -->
+        <!-- TEMP -->
+        @for($i = 0 ; $i <  5 ; $i++)
+          @include('inc.job')
+        @endfor
     </div>
 </div>
 @endsection

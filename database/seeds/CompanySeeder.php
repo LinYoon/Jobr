@@ -17,19 +17,19 @@ class CompanySeeder extends Seeder
         Company::create([
           'name' => 'Merkator',
           'email' => 'apply@merkator.com',
-          'password' => Hash::make('123')
+          'password' => Hash::make('123456')
         ]);
 
         Company::create([
           'name' => 'Coca-Cola',
           'email' => 'apply@coca-cola.com',
-          'password' => Hash::make('123')
+          'password' => Hash::make('123456')
         ]);
 
         Company::create([
           'name' => 'Microsoft',
           'email' => 'apply@microsoft.com',
-          'password' => Hash::make('123')
+          'password' => Hash::make('123456')
         ]);
     }
 }

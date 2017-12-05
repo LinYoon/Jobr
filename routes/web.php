@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'PagesController@index')->name('home');
+Route::get('/job/{id}', 'PagesController@job')->name('job.details');
 
 Auth::routes();
 
@@ -32,3 +33,7 @@ Route::prefix('register')->group(function(){
 });
 
 Route::get('/company-dashboard', "CompanyController@index")->name('company.dashboard');
+
+Route::get('/company/{id}', "PagesController@companyProfile")->name('company.profile');
+Route::get('/user/{id}', "PagesController@userProfile")->name('user.profile');
+Route::get('/new', "CompanyController@new")->name('job.new');

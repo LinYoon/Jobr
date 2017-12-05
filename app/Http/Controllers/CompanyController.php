@@ -11,18 +11,16 @@ class CompanyController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
+    public function __construct(){
         $this->middleware('auth:company');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
+
+    public function index(){
         return view('company-dashboard');
+    }
+
+    public function new(){
+      return view('job-new');
     }
 }

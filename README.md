@@ -1,2 +1,0 @@
-# Jobr
-School project, TPO

@@ -8,50 +8,49 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Jobr') }}</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/homepage.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/animate.min.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
+            <nav class="navbar navbar-default navbar-fixed-top templatemo-nav" role="navigation">
             <div class="container">
                 <div class="navbar-header">
-
-                    <!-- Collapsed Hamburger -->
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse" aria-expanded="false">
-                        <span class="sr-only">Toggle Navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
+                    <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon icon-bar"></span>
+                        <span class="icon icon-bar"></span>
+                        <span class="icon icon-bar"></span>
                     </button>
 
-                    <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
-                    </a>
+                    <a class="brand" href="{{ url('/') }}"><img src="{{ asset("images/brand.svg") }}" /> {{ config('app.name', 'Jobr') }}</a>
                 </div>
 
-                <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        &nbsp;
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav text-uppercase blue">
+                        <li class="active"><a href="{{ url('/') }}"><i class="fa fa-home fa-fw"></i> Domov</a></li>
+                        <li><a href="features"><i class="fa fa-fw fa-list" aria-hidden="true"></i> Delovna mesta</a></li>
+                        <li><a href="about"><i class="fa fa-building-o  fa-fw"></i> Podjetja</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right">
+                    <ul class="nav navbar-nav navbar-right text-uppercase">
                         <!-- Authentication Links -->
                         @if ( !Auth::guard('web')->check() && !Auth::guard('company')->check())
-                            <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="{{ route('register') }}">Register</a></li>
+                            <li class="login-li"><a href="{{ route('login') }}"><i class="fa fa-sign-in fa-fw"></i> Prijava</a></li>
+                            <li><a href="{{ route('register') }}"><i class="fa fa-user-plus fa-fw"></i> Registracija</a></li>
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
                                   @if(Auth::guard('company')->check())
                                     {{Auth::guard('company')->user()->name}}
                                   @elseif(Auth::guard('web')->check())
-                                      {{Auth::user()->first_name}}
+                                  <i class="fa fa-user fa-fw"></i> {{Auth::user()->first_name}} {{Auth::user()->last_name}}
                                   @endif
                                   <!-- elseif guard = admin -->
                                     <span class="caret"></span>
@@ -100,5 +99,11 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.js') }}"></script>
+    <script src="{{ asset('js/wow.min.js') }}"></script>
+    <script>
+        new WOW().init();
+    </script>
 </body>
 </html>

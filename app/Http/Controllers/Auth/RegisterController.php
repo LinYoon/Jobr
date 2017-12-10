@@ -23,8 +23,8 @@ class RegisterController extends Controller
     use RegistersUsers;
 
 
-    public function showRegistrationForm(){
-      return view('auth.register-user');
+    public function registrationForm(){
+      return view('auth.register');
     }
 
 
@@ -79,7 +79,4 @@ class RegisterController extends Controller
         ]);
     }
 
-    public function showUserTypeSelection(){
-      return view('userTypeSelection')->with('action', 'register');
-    }
 }

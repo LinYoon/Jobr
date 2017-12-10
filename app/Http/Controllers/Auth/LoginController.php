@@ -20,8 +20,8 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
-    public function showLoginForm(){
-      return View('auth.login-user');
+    public function loginForm(){
+      return View('auth.login');
     }
 
 
@@ -42,7 +42,4 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    public function showUserTypeSelection(){
-      return view('userTypeSelection')->with('action', 'login');
-    }
 }

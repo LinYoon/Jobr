@@ -19,7 +19,5 @@ class DatabaseSeeder extends Seeder
          $this->call('JobSeeder');
          $this->call('RegionSeeder');
          $this->call('JobTypeSeeder');
-         $this->call('ApplySeeder');
-
     }
 }

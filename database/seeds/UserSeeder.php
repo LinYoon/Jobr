@@ -18,28 +18,21 @@ class UserSeeder extends Seeder
         'first_name' => 'Johnny',
         'last_name' => 'Smith',
         'email' => 'johnny.smith@jobr.com',
-        'password' => Hash::make('123456')
+        'password' => Hash::make('123')
       ]);
 
       User::create([
         'first_name' => 'Franky',
         'last_name' => 'Somethinger',
         'email' => 'franky.somethinger@jobr.com',
-        'password' => Hash::make('123456')
+        'password' => Hash::make('123')
       ]);
 
       User::create([
         'first_name' => 'Sofia',
         'last_name' => 'Cox',
         'email' => 'sofia.cox@jobr.com',
-        'password' => Hash::make('123456')
-      ]);
-
-      User::create([
-        'first_name' => 'User',
-        'last_name' => 'User',
-        'email' => 'user@user.user',
-        'password' => Hash::make('useruser')
+        'password' => Hash::make('123')
       ]);
     }
 }

@@ -2,90 +2,50 @@
 
 @section('content')
 <div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
-
-                <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('register.user') }}">
-                        {{ csrf_field() }}
-
-                        <div class="form-group{{ $errors->has('first_name') ? ' has-error' : '' }}">
-                            <label for="name" class="col-md-4 control-label">First name</label>
-
-                            <div class="col-md-6">
-                                <input id="first_name" type="text" class="form-control" name="first_name" value="{{ old('first_name') }}" required autofocus>
-
-                                @if ($errors->has('name'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('first_name') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('last_name') ? ' has-error' : '' }}">
-                            <label for="name" class="col-md-4 control-label">Last name</label>
-
-                            <div class="col-md-6">
-                                <input id="last_name" type="text" class="form-control" name="last_name" value="{{ old('last_name') }}" required autofocus>
-
-                                @if ($errors->has('name'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('last_name') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Register
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+    
+<div class="row">
+<div class="col-md-6 col-md-offset-3">
+    <form id="msform" method="POST" action="{{ route('register.user') }}">
+        {{ csrf_field() }}
+        <!-- progressbar -->
+        <ul id="progressbar">
+            <li class="active">Osebni podatki</li>
+            <li>Izobrazba in izkušnje</li>
+            <li>Nastavitve računa</li>
+        </ul>
+        <!-- fieldsets -->
+        <fieldset>
+            <h2 class="fs-title">Osebni podatki</h2>
+            <h3 class="fs-subtitle">Povejte nam nekaj več o sebi</h3>
+            <input type="text" name="first_name" placeholder="* Ime" required/>
+            <input type="text" name="last_name" placeholder="* Priimek" required/>
+            <input type="text" name="phone" placeholder="Telefonska številka" />
+            <input type="text" name="birthday" placeholder="Datum rojstva" onfocus="(this.type='date')" onblur="(this.type='text')"/>
+            <input type="text" name="address" placeholder="Mesto bivanja" />
+            <input type="text" name="post" placeholder="Poštna številka" />
+            <input type="button" name="next" class="next action-button" value="Naprej"/>
+        </fieldset>
+        <fieldset>
+            <h2 class="fs-title">Izobrazba in delovne izkušnje</h2>
+            <h3 class="fs-subtitle">Izberite vrsto izobrazbe in opišite vaše delovne izkušnje</h3>
+            <select name="school" id="school">
+                <option value="Izobrazba">Izobrazba</option>
+            </select>
+            <textarea name="work" id="work" placeholder="Opišite vaše delovne izkušnje..." rows="5"></textarea>
+            <input type="button" name="previous" class="previous action-button-previous" value="Nazaj"/>
+            <input type="button" name="next" class="next action-button" value="Naprej"/>
+        </fieldset>
+        <fieldset>
+            <h2 class="fs-title">Nastavitve računa</h2>
+            <h3 class="fs-subtitle">Izpolnite podatke s katerimi se boste prijavili</h3>
+            <input type="text" name="email" placeholder="* Email" required/>
+            <input type="password" name="password" placeholder="* Geslo" required/>
+            <input type="password" name="password_confirmation" placeholder="* Potrdite geslo" required/>
+            <input type="button" name="previous" class="previous action-button-previous" value="Nazaj"/>
+            <button type="submit" name="submit" class="submit action-button">Potrdi</button>
+        </fieldset>
+    </form>
+</div>
+</div>
 </div>
 @endsection

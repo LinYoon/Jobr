@@ -33,9 +33,8 @@
 
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav text-uppercase blue">
-                        <li class="active"><a href="{{ url('/') }}"><i class="fa fa-home fa-fw"></i> Domov</a></li>
-                        <li><a href="features"><i class="fa fa-fw fa-list" aria-hidden="true"></i> Delovna mesta</a></li>
-                        <li><a href="about"><i class="fa fa-building-o  fa-fw"></i> Podjetja</a></li>
+                        <li class="active"><a href="{{ url('/') }}"><i class="fa fa-fw fa-list" aria-hidden="true"></i> Delovna mesta</a></li>
+                        <li><a href="{{ url('podjetja') }}"><i class="fa fa-building-o  fa-fw"></i> Podjetja</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -61,16 +60,28 @@
                                   @if(Auth::guard('company')->check())
                                     <li>
                                       <a href="{{ route('company.profile', Auth::guard('company')->user()->id) }}">
-                                          Profile
+                                        <i class="fa fa-address-card-o fa-fw"></i> Profil
                                       </a>
                                     </li>
                                     <li>
-                                      <a href="{{ route('company.dashboard')}}">Dashoard</a>
+                                      <a href="{{ route('company.profile', Auth::guard('company')->user()->id) }}">
+                                        <i class="fa fa-bar-chart fa-fw"></i> Nadzorna plošča
+                                      </a>
+                                    </li>
+                                    <li>
+                                      <a href="{{ route('company.messages', Auth::guard('company')->user()->id) }}">
+                                        <i class="fa fa-envelope-o fa-fw"></i> Sporočila
+                                      </a>
                                     </li>
                                   @else
                                     <li>
                                       <a href="{{ route('user.profile', Auth::user()->id) }}">
-                                          Profile
+                                        <i class="fa fa-address-card-o fa-fw"></i> Profil
+                                      </a>
+                                    </li>
+                                    <li>
+                                      <a href="{{ route('user.messages', Auth::user()->id) }}">
+                                        <i class="fa fa-envelope-o fa-fw"></i> Sporočila
                                       </a>
                                     </li>
                                   @endif
@@ -79,7 +90,7 @@
                                       <a href="{{ route('logout') }}"
                                           onclick="event.preventDefault();
                                                    document.getElementById('logout-form').submit();">
-                                          Logout
+                                                   <i class="fa fa-sign-out fa-fw"></i> Odjava
                                       </a>
 
                                       <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -95,13 +106,60 @@
         </nav>
 
         @yield('content')
+
+        <footer> 
+            <div class="container footer-container">
+                <div class="row">
+                    <div class="col-md-3 col-sm-6 footer-col">
+                        <div class="logofooter"> JOBR inc.</div>
+                        <p><i class="fa fa-map-pin"></i> Večna pot 113, 1000 Ljubljana</p>
+                        <p><i class="fa fa-phone"></i> IT oddelek: +386 1 111 11 11 <br /><i class="fa fa-phone"></i> Svetovanje: +386 1 222 22 22 <br /><i class="fa fa-phone"></i> Informacije: +386 1 333 33 33</p>
+                        <p><i class="fa fa-envelope"></i> IT oddelek: info@jobr.si <br /><i class="fa fa-envelope"></i> Svetovanje: svet@jobr.si <br /><i class="fa fa-envelope"></i> Informacije: info@jobr.si</p>
+
+                    </div>
+                    <div class="col-md-3 col-sm-6 footer-col">
+                        <h6 class="heading7">POVEZAVE</h6>
+                        <ul class="footer-ul">
+                            <li><a href="#"> Delovna mesta</a></li>
+                            <li><a href="#"> Podjetja</a></li>
+                            <li><a href="#"> Novice</a></li>
+                            <li><a href="#"> Piškotki</a></li>
+                            <li><a href="#"> Zemljevid strani</a></li>
+                            <li><a href="#"> O nas</a></li>
+                            <li><a href="#"> Nov uporabnik</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3 col-sm-6 footer-col">
+                        <h6 class="heading7">ZADNJE NOVICE</h6>
+                        <div class="post">
+                            
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 footer-col">
+                        <h6 class="heading7">DRUŽBENA OMREŽJA</h6>
+                        <p>
+                            <ul class="footer-social">
+                                <li><i class="fa fa-linkedin social-icon linked-in" aria-hidden="true"></i></li>
+                                <li><i class="fa fa-facebook social-icon facebook" aria-hidden="true"></i></li>
+                                <li><i class="fa fa-twitter social-icon twitter" aria-hidden="true"></i></li>
+                                <li><i class="fa fa-youtube-play social-icon youtube" aria-hidden="true"></i></li>
+                                <li><i class="fa fa-instagram social-icon instagram" aria-hidden="true"></i></li>
+                            </ul>
+                            <br /><br />&nbsp;
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
     </div>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.easing.js') }}"></script>
     <script src="{{ asset('js/bootstrap.js') }}"></script>
     <script src="{{ asset('js/wow.min.js') }}"></script>
+    <script src="{{ asset('js/custom.js') }}"></script>
     <script>
         new WOW().init();
     </script>

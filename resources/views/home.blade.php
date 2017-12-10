@@ -4,7 +4,7 @@
 <div class="under-nav">
     <div class="container">
       <div class="row">
-		  <div class="user-greet row wow fadeInDown">
+		  <div class="user-greet row">
 				<div class="col-md-2 free">
 					<span class="num">320+</span> <br/>delovnih mest</span>
 				</div>
@@ -21,7 +21,7 @@
 					
 				</div>
 		  </div>
-          <form action="#" method="get" class="wow fadeIn" data-wow-delay="0.5s">
+          <form action="#" method="get">
             <div class="col-md-10">
               <input type="text" name="search" class="form-control" id="search" placeholder="Iskanje po ključnih besedah, delodajalcih, kategorijah dela, ...">
 			</div>
@@ -39,7 +39,7 @@
 <div class="container jobs-container">
     <div class="row jobs-row">
       <div class="col-md-4 jobs-col">
-        <div class="panel panel-default jobs-panel wow slideInLeft">
+        <div class="panel panel-default jobs-panel">
           <div class="panel-body">
 		  <nav id="column_left">	
 		<ul class="nav nav-list">
@@ -390,12 +390,12 @@
 			  </li>
 
 			  <li>
-		    	<a class="accordion-heading" data-toggle="collapse" data-target="#submenu4">
+		    	<a class="accordion-heading" data-toggle="collapse" data-target="#submenu5">
 					  <span class="nav-header-primary">Vrsta zaposlitve<span class="pull-right"><i class="fa fa-fw fa-plus"></i></span></span>
 					  <span class="criteria">Ni izbranih kriterijev</span>
 		    	</a>
 
-			    <ul class="nav nav-list collapse" id="submenu4" class="submenu">
+			    <ul class="nav nav-list collapse" id="submenu5" class="submenu">
 						<li>
 							<label class="checkbox-inline">
 								<input type="checkbox" value="">Polni delovni čas <span class="job-count pull-right">[164]</span>

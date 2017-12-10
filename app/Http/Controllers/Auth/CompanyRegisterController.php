@@ -55,6 +55,11 @@ class CompanyRegisterController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
+            'expertise_area' => 'required|string|max:255',
+            'address' => 'required|string|max:255',
+            'phone' => 'required|string|max:255',
+            'contact_person' => 'required|string|max:255',
+            'geo_area' => 'required|string|max:255'
         ]);
     }
 
@@ -70,6 +75,11 @@ class CompanyRegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'expertise_area' => $data['expertise_area'],
+            'address' => $data['address'],
+            'phone' => $data['phone'],
+            'contact_person' => $data['contact_person'],
+            'geo_area' => $data['geo_area']
         ]);
     }
 

@@ -107,7 +107,10 @@
 
         @yield('content')
 
-        <footer> 
+        
+    </div>
+
+    <footer> 
             <div class="container footer-container">
                 <div class="row">
                     <div class="col-md-3 col-sm-6 footer-col">
@@ -151,7 +154,6 @@
                 </div>
             </div>
         </footer>
-    </div>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>

@@ -536,6 +536,10 @@ form .btn {
     margin-top: 50px;
 }
 
+.login-form, .register-form {
+    min-height: 449px !important;
+}
+
 #msform fieldset {
     background: white;
     border: 0 none;
@@ -861,26 +865,87 @@ footer {
 
     .user-left, 
     .company-right {
-        padding-top: 50px;
         text-align: center;
-        min-height: 500px;
+        min-height: 445px;
+    }
+
+    .user-left {
+        margin-top: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+    }
+
+    .user-left a {
+        width: 100%;
     }
 
     .user-left button {
-        background: #13bde7;
-        color: #fff;
-        padding: 50px;
+        background: #fff;
+        border-radius: 20px;
+        border: 2px solid #e7e7e7 !important;
+        color: #000;
         font-size: 24px;
+        padding: 50px;
         text-transform: uppercase;
         font-weight: bold;
         border: none;
+        width: 70%;
     }
+
+    .user-left::after {
+        border-top-left-radius: 10px !important;
+        border-bottom-left-radius: 10px !important;
+        content: "";
+        background: url('../images/user.jpg') no-repeat;
+        background-size: 100% 100%;
+        opacity: 0.45;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        position: absolute;
+        z-index: -1;
+    }
+
+    .company-right {
+        margin-top: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+    }
+
+    .company-right a {
+        width: 100%;
+    }
+
     .company-right button {
-        background: #f57454;
-        color: #fff;
+        background: #fff;
+        border: 2px solid #e7e7e7 !important;
+        border-radius: 20px;
+        color: #000;
         padding: 50px;
         font-size: 24px;
         text-transform: uppercase;
         font-weight: bold;
         border: none;
+        width: 70%;
+    }
+
+    
+    .company-right::after {
+        border-top-right-radius: 10px !important;
+        border-bottom-right-radius: 10px !important;
+        content: "";
+        background: url('../images/company.jpg') no-repeat;
+        background-size: 100% 100%;
+        opacity: 0.45;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        position: absolute;
+        z-index: -1;
     }

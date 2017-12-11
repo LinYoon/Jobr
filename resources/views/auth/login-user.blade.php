@@ -10,8 +10,22 @@
         <!-- fieldsets -->
         <fieldset>
             <h2 class="fs-title">Prijava v sistem</h2>
-            <input type="text" name="email" placeholder="Email" required/>
+            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+            <input id="email" type="text" name="email" placeholder="Email" value="{{ old('email') }}" required/>
+            @if ($errors->has('email'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('email') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+                    <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
             <input type="password" name="password" placeholder="Geslo" required/>
+            @if ($errors->has('password'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('password') }}</strong>
+                            </span>
+                        @endif
+                    </div>
             <button type="submit" name="submit" class="submit action-button">Potrdi</button>
             <a class="btn btn-link" href="{{ route('password.request') }}">Pozabljeno geslo?</a>
         </fieldset>

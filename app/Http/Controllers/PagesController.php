@@ -20,6 +20,11 @@ class PagesController extends Controller
       return view('user-profile');
     }
 
+    public function userMessages($id){
+      // TODO get User with id $id
+      return view('user-messages');
+    }
+
     public function companyProfile($id){
       // TODO get Company with id $id
       return view('company-profile');

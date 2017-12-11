@@ -36,4 +36,6 @@ Route::get('/company-dashboard', "CompanyController@index")->name('company.dashb
 
 Route::get('/company/{id}', "PagesController@companyProfile")->name('company.profile');
 Route::get('/user/{id}', "PagesController@userProfile")->name('user.profile');
+Route::get('/user/{id}/sporocila', "PagesController@userMessages")->name('user.messages');
+Route::get('/company/{id}/sporocila', "CompanyController@companyMessages")->name('company.messages');
 Route::get('/new', "CompanyController@new")->name('job.new');

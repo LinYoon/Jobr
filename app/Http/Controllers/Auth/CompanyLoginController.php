@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+
 use Auth;
 
 class CompanyLoginController extends Controller{
@@ -19,8 +20,10 @@ class CompanyLoginController extends Controller{
       // Validate the form database
       $this->validate($request, [
         'email' => 'required|email',
-        'password' => 'required|min:6'
+        'password' => 'required'
       ]);
+
+
 
       // Attemp to login user-comapny in
       if(Auth::guard('company')->attempt(['email' => $request->email, 'password' => $request->password], $request->remember)){
@@ -28,6 +31,10 @@ class CompanyLoginController extends Controller{
           return redirect()->intended(route('company.dashboard'));
       }
       // if unsuccessful, then redirect back to the login with the form data
-      return redirect()->back()->withInput($request->only('email', 'remember'));
+
+      return redirect()->back()->withInput($request->only('email'))->withErrors([
+        'email' => [trans('auth.failed')]
+      ]);
     }
+
 }

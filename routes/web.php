@@ -16,21 +16,22 @@ Route::get('/job/{id}', 'PagesController@job')->name('job.details');
 
 Auth::routes();
 
-Route::prefix('login')->group(function(){
-  Route::get('/user', 'Auth\LoginController@showLoginForm')->name('login.user');
-  Route::post('/user', 'Auth\LoginController@login')->name('login.user.submit');
-  Route::get('/company', 'Auth\CompanyLoginController@showLoginForm')->name('login.company');
-  Route::post('/company', 'Auth\CompanyLoginController@login')->name('login.company.submit');
+Route::prefix('prijava')->group(function(){
+  Route::get('/uporabnik', 'Auth\LoginController@showLoginForm')->name('login.user');
+  Route::post('/uporabnik', 'Auth\LoginController@login')->name('login.user');
+  Route::get('/podjetje', 'Auth\CompanyLoginController@showLoginForm')->name('login.company');
+  Route::post('/podjetje', 'Auth\CompanyLoginController@login')->name('login.company');
   Route::get('/', 'Auth\LoginController@showUserTypeSelection')->name('login');
 });
 
-Route::prefix('register')->group(function(){
-  Route::get('/user', 'Auth\RegisterController@showRegistrationForm')->name('register.user');
-  Route::post('/user', 'Auth\RegisterController@register')->name('register.user.submit');
+Route::prefix('registracija')->group(function(){
+  Route::get('/uporabnik', 'Auth\RegisterController@showRegistrationForm')->name('register.user');
+  Route::post('/uporabnik', 'Auth\RegisterController@register')->name('register.user');
   Route::get('/company', 'Auth\CompanyRegisterController@showRegistrationForm')->name('register.company');
-  Route::post('/company', 'Auth\CompanyRegisterController@register')->name('register.company.submit');
+  Route::post('/company', 'Auth\CompanyRegisterController@register')->name('register.company');
   Route::get('/', 'Auth\RegisterController@showUserTypeSelection')->name('register');
 });
+
 
 Route::get('/company-dashboard', "CompanyController@index")->name('company.dashboard');
 

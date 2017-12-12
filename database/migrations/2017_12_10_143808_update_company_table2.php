@@ -14,11 +14,10 @@ class UpdateCompanyTable2 extends Migration
     public function up()
     {
         Schema::table('companies', function (Blueprint $table) {
-            $table->string('expertise_area');
-            $table->string('address');
-            $table->string('phone');
-            $table->string('contact_person');
-            $table->string('geo_area');
+            $table->string('expertise_area')->nullable();
+            $table->string('address')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('geo_area')->nullable();
         });
     }
 

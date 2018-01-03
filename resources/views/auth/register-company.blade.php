@@ -47,6 +47,12 @@
                     <strong>{{ $errors->first('davcna') }}</strong>
                 </span>
             @endif
+            <input type="text" name="phone" placeholder="* Telefon" value="{{ old('phone') }}" />
+            @if ($errors->has('phone'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('phone') }}</strong>
+                </span>
+            @endif
             <input type="text" name="website" placeholder="Spletna stran" value="{{ old('website') }}" />
             @if ($errors->has('website'))
                 <span class="help-block">

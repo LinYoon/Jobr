@@ -4,12 +4,14 @@
 <div class="container">
   <div class="row">
       <div class="col-md-8 col-md-offset-2">
-        <h1>{{$user->first_name}}</h1>
+        <h1>{{$company->name}}</h1>
+        
         <p>Message 1</p>
         <p>Message 2</p>
         <p>Message 3</p>
         <p>Message 4</p>
         <!-- TODO if logged user is on this page, display edit button -->
+
       </div>
     </div>
 </div>

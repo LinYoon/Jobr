@@ -16,6 +16,7 @@
     <link href="{{ asset('css/homepage.css') }}" rel="stylesheet">
     <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/animate.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/jobr.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -59,32 +60,27 @@
 
                                   @if(Auth::guard('company')->check())
                                     <li>
-                                      <a href="{{ route('company.profile', Auth::guard('company')->user()->id) }}">
-                                        <i class="fa fa-address-card-o fa-fw"></i> Profil
-                                      </a>
-                                    </li>
-                                    <li>
-                                      <a href="{{ route('company.profile', Auth::guard('company')->user()->id) }}">
+                                      <a href="{{ route('company.dashboard')}}">
                                         <i class="fa fa-bar-chart fa-fw"></i> Nadzorna plošča
-                                      </a>
-                                    </li>
-                                    <li>
-                                      <a href="{{ route('company.messages', Auth::guard('company')->user()->id) }}">
-                                        <i class="fa fa-envelope-o fa-fw"></i> Sporočila
                                       </a>
                                     </li>
                                   @else
                                     <li>
-                                      <a href="{{ route('user.profile', Auth::user()->id) }}">
-                                        <i class="fa fa-address-card-o fa-fw"></i> Profil
-                                      </a>
-                                    </li>
-                                    <li>
-                                      <a href="{{ route('user.messages', Auth::user()->id) }}">
-                                        <i class="fa fa-envelope-o fa-fw"></i> Sporočila
+                                      <a href="{{ route('applies')}}">
+                                        <i class="fa fa-pencil-square-o fa-fw"></i> Prijave
                                       </a>
                                     </li>
                                   @endif
+                                  <li>
+                                    <a href="{{ route('profile')}}">
+                                      <i class="fa fa-address-card-o fa-fw"></i> Profil
+                                    </a>
+                                  </li>
+                                  <li>
+                                    <a href="{{ route('messages')}}">
+                                      <i class="fa fa-envelope-o fa-fw"></i> Sporočila
+                                    </a>
+                                  </li>
 
                                   <li>
                                       <a href="{{ route('logout') }}"

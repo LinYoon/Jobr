@@ -20,7 +20,7 @@ class CreateJobsTable extends Migration
             $table->integer('category_id');
             $table->integer('post_id');
             $table->integer('degree_id');
-
+            $table->integer('status')->default($value = 0);
             $table->string('title');
             $table->longText('description');
             $table->string('position');

@@ -9,7 +9,7 @@ class Job extends Model
 {
 
   protected $fillable = [
-      'company_id', 'job_type_id', 'category_id', 'post_id', 'degree_id', 'title', 'description', 'postion', 'terms', 'duration', 'hourly_wage', 'home', 'trial', 'work_time', 'weekends', 'address'
+      'company_id', 'job_type_id', 'category_id', 'post_id', 'degree_id', 'title', 'description', 'position', 'terms', 'duration', 'hourly_wage', 'home', 'trial', 'work_time', 'weekends', 'address'
   ];
 
     /**
@@ -49,6 +49,6 @@ class Job extends Model
     }
 
     public function isApplied($user_id){
-        return size_of($this->hasMany('\App\Apply')->where('user_id', '=', $user_id)) == 1;
+        return sizeof($this->hasMany('\App\Apply')->where('user_id', '=', $user_id)->get()) == 1;
     }
 }

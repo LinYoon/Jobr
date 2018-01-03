@@ -26,4 +26,8 @@ class Company extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function getCompanyJobs(){
+      return $this->hasMany('App\Job')->get();
+    }
 }

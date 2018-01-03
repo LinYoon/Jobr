@@ -11,15 +11,15 @@
                     <form class="form-horizontal" method="POST" action="">
                         {{ csrf_field() }}
 
-                        <div class="form-group{{ $errors->has('Title') ? ' has-error' : '' }}">
-                            <label for="Title" class="col-md-4 control-label">Title</label>
+                        <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
+                            <label for="title" class="col-md-4 control-label">Title</label>
 
                             <div class="col-md-6">
-                                <input id="Title" type="text" class="form-control" name="Title" required>
+                                <input id="title" type="text" class="form-control" name="title" value="{{ old('title') }}" required>
 
-                                @if ($errors->has('Title'))
+                                @if ($errors->has('title'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('Title') }}</strong>
+                                        <strong>{{ $errors->first('title') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -30,11 +30,7 @@
 
                             <div class="col-md-6">
 
-                                <select id="category" type="text" class="form-control" name="category" required>
-                                  <option value="neki">neki</option>
-                                  <option value="neki">neki</option>
-                                  <option value="neki">neki</option>
-                                </select>
+                                @include('inc.categories-dropdown')
 
                                 @if ($errors->has('category'))
                                     <span class="help-block">
@@ -48,7 +44,7 @@
                             <label for="description" class="col-md-4 control-label">Job description</label>
 
                             <div class="col-md-6">
-                                <input id="description" type="text" class="form-control" name="description" required>
+                                <textarea id="description" type="text" class="form-control" name="description" required>{{old('description')}}</textarea>
 
                                 @if ($errors->has('description'))
                                     <span class="help-block">
@@ -64,7 +60,7 @@
 
                             <div class="col-md-6">
 
-                                  <input id="position" type="text" class="form-control" name="position" required>
+                                  <input id="position" type="text" class="form-control" name="position" value="{{old('position')}}" required>
 
                                 @if ($errors->has('position'))
                                     <span class="help-block">
@@ -79,7 +75,7 @@
 
                             <div class="col-md-6">
 
-                                  <input id="hourly_wage" type="text" class="form-control" name="hourly_wage" required>
+                                  <input id="hourly_wage" type="text" class="form-control"  name="hourly_wage" value="{{old('hourly_wage')}}" required>
 
                                 @if ($errors->has('hourly_wage'))
                                     <span class="help-block">
@@ -94,7 +90,11 @@
 
                             <div class="col-md-6">
 
-                                  <input id="job_type" type="text" class="form-control" name="job_type" required>
+                              <select id="job_type" type="text" class="form-control" name="job_type" value="{{old('job_type')}}" required>
+                                @foreach(App\JobType::all() as $type)
+                                  <option value="{{$type->id}}">{{$type->type}}</option>
+                                @endforeach
+                              </select>
 
                                 @if ($errors->has('job_type'))
                                     <span class="help-block">
@@ -110,7 +110,7 @@
 
                             <div class="col-md-6">
 
-                                  <input id="duration" type="text" class="form-control" name="duration">
+                                  <input id="duration" type="text" class="form-control" name="duration" value="{{old('duration')}}">
 
                                 @if ($errors->has('duration'))
                                     <span class="help-block">
@@ -125,7 +125,7 @@
 
                             <div class="col-md-6">
 
-                                  <input id="trial" type="text" class="form-control" name="trial">
+                                  <input id="trial" type="text" class="form-control" name="trial" value="{{old('trial')}}">
 
                                 @if ($errors->has('trial'))
                                     <span class="help-block">
@@ -141,11 +141,7 @@
 
                             <div class="col-md-6">
 
-                              <select id="degree" type="text" class="form-control" name="degree" required>
-                                <option value="neki">neki</option>
-                                <option value="neki">neki</option>
-                                <option value="neki">neki</option>
-                              </select>
+                              @include('inc.degrees-dropdown')
 
                                 @if ($errors->has('degree'))
                                     <span class="help-block">
@@ -160,7 +156,7 @@
 
                             <div class="col-md-6">
 
-                              <textarea id="terms" type="text" class="form-control" name="terms">
+                              <textarea id="terms" type="text" class="form-control" name="terms">{{old('terms')}}</textarea>
 
                                 @if ($errors->has('terms'))
                                     <span class="help-block">
@@ -176,7 +172,7 @@
 
                             <div class="col-md-6">
 
-                              <input id="post" type="text" class="form-control" name="post">
+                              <input id="post" type="text" class="form-control" name="post" value="{{old('post')}}">
 
                                 @if ($errors->has('post'))
                                     <span class="help-block">
@@ -192,7 +188,7 @@
 
                             <div class="col-md-6">
 
-                              <input id="address" type="text" class="form-control" name="address">
+                              <input id="address" type="text" class="form-control" name="address" value="{{old('address')}}">
 
                                 @if ($errors->has('address'))
                                     <span class="help-block">
@@ -208,7 +204,7 @@
 
                             <div class="col-md-6">
 
-                              <input id="work_time" type="text" class="form-control" name="work_time">
+                              <input id="work_time" type="number" class="form-control" name="work_time" value="{{$errors->has('address') ? old('work_time'): 8}}" >
 
                                 @if ($errors->has('work_time'))
                                     <span class="help-block">
@@ -223,7 +219,8 @@
 
                             <div class="col-md-6">
 
-                              <checkbox id="weekends" type="text" class="form-control" name="weekends">
+                              <input type="radio" class="form-control" name="weekends" value="1">Yes
+                              <input type="radio" class="form-control" name="weekends" value="0">No
 
                                 @if ($errors->has('weekends'))
                                     <span class="help-block">
@@ -237,7 +234,8 @@
                             <label for="home" class="col-md-4 control-label">Work from home</label>
 
                             <div class="col-md-6">
-                              <checkbox id="home" type="text" class="form-control" name="home">
+                              <input type="radio" class="form-control" name="home" value="1">Yes
+                              <input type="radio" class="form-control" name="home" value="0">No
 
                                 @if ($errors->has('home'))
                                     <span class="help-block">
@@ -251,7 +249,7 @@
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
-                                    Submit
+                                    Dodaj
                                 </button>
                             </div>
                         </div>

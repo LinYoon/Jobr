@@ -33,8 +33,8 @@
 
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav text-uppercase blue">
-                        <li class="active"><a href="{{ url('/') }}"><i class="fa fa-fw fa-list" aria-hidden="true"></i> Delovna mesta</a></li>
-                        <li><a href="{{ url('podjetja') }}"><i class="fa fa-building-o  fa-fw"></i> Podjetja</a></li>
+                        <li class="active"><a href="{{ route('home') }}"><i class="fa fa-fw fa-list" aria-hidden="true"></i> Delovna mesta</a></li>
+                        <li><a href="{{ route('companies') }}"><i class="fa fa-building-o  fa-fw"></i> Podjetja</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -107,10 +107,10 @@
 
         @yield('content')
 
-        
+
     </div>
 
-    <footer> 
+    <footer>
             <div class="container footer-container">
                 <div class="row">
                     <div class="col-md-3 col-sm-6 footer-col">
@@ -135,7 +135,7 @@
                     <div class="col-md-3 col-sm-6 footer-col">
                         <h6 class="heading7">ZADNJE NOVICE</h6>
                         <div class="post">
-                            
+
                         </div>
                     </div>
                     <div class="col-md-3 col-sm-6 footer-col">

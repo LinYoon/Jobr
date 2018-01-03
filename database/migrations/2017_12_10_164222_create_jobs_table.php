@@ -15,6 +15,7 @@ class CreateJobsTable extends Migration
     {
         Schema::create('jobs', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('company_id');
             $table->integer('job_type_id');
             $table->integer('category_id');
             $table->integer('post_id');
@@ -23,11 +24,11 @@ class CreateJobsTable extends Migration
             $table->string('title');
             $table->longText('description');
             $table->string('position');
-            $table->string('terms');
-            $table->integer('duration');   // ?? in months or weeks ??
+            $table->string('terms')->nullable();
+            $table->integer('duration')->nullable();   // ?? in months or weeks ??
             $table->double('hourly_wage');
             $table->boolean('home');
-            $table->integer('trial');      // in days
+            $table->integer('trial')->nullable();      // in days
             $table->double('work_time');   //hours per day
             $table->boolean('weekends');
             $table->string('address');

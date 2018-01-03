@@ -17,7 +17,7 @@ class CreateAppliesTable extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->integer('job_id');
-            $table->integer('status');
+            $table->integer('status')->default($value = 0);
             $table->timestamps();
         });
     }

@@ -5,19 +5,35 @@
   <div class="row">
       <div class="col-md-8 col-md-offset-2">
           <div class="panel panel-default">
-              <div class="panel-heading">Job title</div>
-              <div class="panel-body">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                <p>Company name</p>
-                <p> hourly wage</p>
-                <p> Work address</p>
-                <p> map where address is (google maps)</p>
+              <div class="panel-heading">{{$job->title}}</div>
+                <div class="panel-body">
+                  <a href="{{route('company.profile', $job->company['id'])}}"><p>{{$job->company['name']}}</p></a>
+                  <p>{{$job->description}}</p>
+                  <p> {{$job->terms}}</p>
 
-                <button type="button" class="btn btn-primary">Apply for job</button>
+                  <br>
+                  Where we at
+                  <p> {{$job->post_id}}</p>
+                  <p> {{$job->address}}</p>
 
-              </div>
-          </div>
-      </div>
+                  <iframe
+                    width="50%"
+                    height="300px"
+                    frameborder="0" style="border:0"
+                    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyD1FTv2w-CRh-ykqfuYpG6zsDJasqwcFdY
+                      &q={{$job->address}}, 1000 Ljubljana" allowfullscreen>
+                  </iframe>
+                  <form method="POST" action="{{route('apply', $job->id)}}">
+                    {{ csrf_field() }}
+                    @if($applied)
+                      <input type="submit" class="btn btn-danger" value="Odjavi se od delovnega mesta">
+                    @else
+                      <input type="submit" class="btn btn-primary" value="Prijavi se na delovno mesto">
+                    @endif
+                </form>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 @endsection

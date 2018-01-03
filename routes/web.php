@@ -11,31 +11,34 @@
 |
 */
 
-Route::get('/', 'PagesController@index')->name('home');
-Route::get('/job/{id}', 'PagesController@job')->name('job.details');
+Route::get('/', 'PagesController@showJobs')->name('home');
+Route::get('/delo/{id}', 'PagesController@job')->name('job.details');
+Route::post('/delo/{id}', 'PagesController@jobApply')->name('apply');
 
 Auth::routes();
 
-Route::prefix('login')->group(function(){
-  Route::get('/user', 'Auth\LoginController@showLoginForm')->name('login.user');
-  Route::post('/user', 'Auth\LoginController@login')->name('login.user.submit');
-  Route::get('/company', 'Auth\CompanyLoginController@showLoginForm')->name('login.company');
-  Route::post('/company', 'Auth\CompanyLoginController@login')->name('login.company.submit');
+Route::prefix('prijava')->group(function(){
+  Route::get('/uporabnik', 'Auth\LoginController@showLoginForm')->name('login.user');
+  Route::post('/uporabnik', 'Auth\LoginController@login')->name('login.user.submit');
+  Route::get('/podjejte', 'Auth\CompanyLoginController@showLoginForm')->name('login.company');
+  Route::post('/podjejte', 'Auth\CompanyLoginController@login')->name('login.company.submit');
   Route::get('/', 'Auth\LoginController@showUserTypeSelection')->name('login');
 });
 
-Route::prefix('register')->group(function(){
-  Route::get('/user', 'Auth\RegisterController@showRegistrationForm')->name('register.user');
-  Route::post('/user', 'Auth\RegisterController@register')->name('register.user.submit');
-  Route::get('/company', 'Auth\CompanyRegisterController@showRegistrationForm')->name('register.company');
-  Route::post('/company', 'Auth\CompanyRegisterController@register')->name('register.company.submit');
+Route::prefix('registracija')->group(function(){
+  Route::get('/uporabnik', 'Auth\RegisterController@showRegistrationForm')->name('register.user');
+  Route::post('/uporabnik', 'Auth\RegisterController@register')->name('register.user.submit');
+  Route::get('/podjejte', 'Auth\CompanyRegisterController@showRegistrationForm')->name('register.company');
+  Route::post('/podjejte', 'Auth\CompanyRegisterController@register')->name('register.company.submit');
   Route::get('/', 'Auth\RegisterController@showUserTypeSelection')->name('register');
 });
 
 Route::get('/company-dashboard', "CompanyController@index")->name('company.dashboard');
-
-Route::get('/company/{id}', "PagesController@companyProfile")->name('company.profile');
-Route::get('/user/{id}', "PagesController@userProfile")->name('user.profile');
-Route::get('/user/{id}/sporocila', "PagesController@userMessages")->name('user.messages');
-Route::get('/company/{id}/sporocila', "CompanyController@companyMessages")->name('company.messages');
-Route::get('/new', "CompanyController@new")->name('job.new');
+Route::get('/podjetja', "PagesController@showCompanies")->name('companies');
+Route::get('/podjejte/{id}', "PagesController@companyProfile")->name('company.profile');
+Route::get('/uporabnik/{id}', "PagesController@userProfile")->name('user.profile');
+Route::get('/uporabnik/{id}/sporocila', "PagesController@userMessages")->name('user.messages');
+Route::get('/podjejte/{id}/sporocila', "CompanyController@companyMessages")->name('company.messages');
+Route::get('/novo-delo', "CompanyController@showNewJobForm")->name('job.new');
+Route::post('/novo-delo', "CompanyController@newJob")->name('job.new');
+Route::get('/podjejte/delo/{id}', "CompanyController@showJobStats")->name('company.job');

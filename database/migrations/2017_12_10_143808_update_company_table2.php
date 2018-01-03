@@ -17,8 +17,6 @@ class UpdateCompanyTable2 extends Migration
             $table->string('expertise_area');
             $table->string('address');
             $table->string('phone');
-            $table->string('contact_person');
-            $table->string('geo_area');
         });
     }
 

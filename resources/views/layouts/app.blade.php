@@ -80,9 +80,13 @@
                                     <a href="{{ route('messages')}}">
                                       <i class="fa fa-envelope-o fa-fw"></i> Sporočila
                                       @if(Auth::guard('company')->check())
-                                        {{sizeof(Auth::guard('company')->user()->unreadMessages)}}
+                                        @if(sizeof(Auth::guard('company')->user()->unreadMessages()) > 0)
+                                              {{sizeof(Auth::guard('company')->user()->unreadMessages())}}
+                                        @endif
                                       @else
-                                        {{sizeof(Auth::guard('web')->user()->unreadMessages)}}
+                                        @if(sizeof(Auth::guard('web')->user()->unreadMessages()) > 0)
+                                          {{sizeof(Auth::guard('web')->user()->unreadMessages())}}
+                                        @endif
                                       @endif
                                     </a>
                                   </li>

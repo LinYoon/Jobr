@@ -6,16 +6,48 @@
 
     @if(Auth::guard('web')->check())
       @if($msg->sender == 'user')
-        To: {{$msg->company->name}}
+        Za: {{$msg->company->name}}
       @else
-        From: {{$msg->company->name}}
+        Od: {{$msg->company->name}}
+        <button class="btn btn-primary" data-toggle="collapse" data-target="#message-{{$msg->id}}">Odpiši</button>
+        <div id="message" class="collapse">
+        Lorem ipsum dolor text....
+        </div>
       @endif
+
     @else
       @if($msg->sender == 'company')
-        To: {{$msg->user->first_name . ' ' . $msg->user->last_name}}
+        Za: {{$msg->user->first_name . ' ' . $msg->user->last_name}}
       @else
-        From: {{$msg->user->first_name . ' ' . $msg->user->last_name}}
+        Od: {{$msg->user->first_name . ' ' . $msg->user->last_name}}
+        <button class="btn btn-primary" data-toggle="collapse" data-target="#message-{{$msg->id}}">Odpiši</button>
+
       @endif
     @endif
+
+  </div>
 </div>
+
+<div id="message-{{$msg->id}}" class="collapse">
+  <form method="post" action="{{ Auth::guard('web')->check() ? route('new.message.to.company') : route('new.message.to.user')}}">
+    {{ csrf_field() }}
+
+    @if(Auth::guard('web')->check())
+      <input type="hidden" id="company_id" class="form-control" name="company_id" value="{{$msg->company_id}}"/>
+    @else
+      <input type="hidden" id="user_id" class="form-control" name="user_id" value="{{$msg->user_id}}"/>
+    @endif
+    <div class="form-group">
+        <input type="text" id="title" class="form-control" name="title" placeholder="Naslov" value="re:{{$msg->title}}" required/>
+    </div>
+
+    <div class="form-group">
+        <textarea id="message" class="form-control" name="message" placeholder="Sporočilo" required></textarea>
+    </div>
+
+    <div class="form-group">
+          <input type="submit" class="btn btn-primary form-control" value="Pošlji">
+    </div>
+
+  </form>
 </div>

@@ -38,7 +38,7 @@
                   </div>
 
                   <div class="form-group">
-                        <textarea id="message" class="form-control" name="message"></textarea>
+                        <textarea id="message" class="form-control" name="message" placeholder="Sporočilo"></textarea>
                   </div>
 
                   <div class="form-group">

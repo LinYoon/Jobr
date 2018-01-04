@@ -41,7 +41,7 @@ class User extends Authenticatable
       return $this->hasMany('\App\Message')->orderBy('created_at', 'DESC')->where('sender', '=', 'company')->get();
     }
     public function unreadMessages(){
-      return $this->hasMany('\App\Message')->where('sender', '=', 'company')->where('seen', '=', 0);
+      return $this->hasMany('\App\Message')->where('sender', '=', 'company')->where('seen', '=', 0)->get();
 
     }
 }

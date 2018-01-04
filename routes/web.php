@@ -42,6 +42,7 @@ Route::get('/profil', "UserAndCompanyController@profile")->name('profile');
 // profile controller ??? edit, and that bullshit
 
 Route::get('/sporocila', "MessagesController@messages")->name('messages');
+Route::get('/sporocila/{filter}', "MessagesController@messages")->name('messages.filter');
 Route::post('/novo-sporocilo-uporabnik', "MessagesController@newMessageToUser")->name('new.message.to.user');
 Route::post('/novo-sporocilo-podjetje', "MessagesController@newMessageToCompany")->name('new.message.to.company');
 

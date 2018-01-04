@@ -41,6 +41,6 @@ class Company extends Authenticatable
       return $this->hasMany('\App\Message')->orderBy('created_at', 'DESC')->where('sender', '=', 'user')->get();
     }
     public function unreadMessages(){
-        return $this->hasMany('\App\Message')->where('sender', '=', 'user')->where('seen', '=', 0);
+        return $this->hasMany('\App\Message')->where('sender', '=', 'user')->where('seen', '=', 0)->get();
     }
 }

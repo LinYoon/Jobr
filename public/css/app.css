@@ -81,7 +81,6 @@ html,
 body {
   padding: 0;
   margin: 0;
-  height: 100%;
   min-height: 100%;
   font-family: 'Lato', sans-serif;
   color: #4f5f6f;
@@ -139,14 +138,14 @@ body {
     margin-top: 80px;
     padding: 20px; }
     @media (min-width: 1200px) {
-      .app .content 
+      .app .content
       {padding: 20px;
-        margin-top: 80px; 
+        margin-top: 80px;
       margin-bottom: 50px;}
 
 @media (min-width: 992px) and (max-width: 1199px) {
   .app .content {
-    padding: 0 35px 80px 35px; 
+    padding: 0 35px 80px 35px;
     margin-top: 80px;} }
 
 @media (min-width: 768px) and (max-width: 991px) {
@@ -762,7 +761,7 @@ border-radius: 0;}
       padding: 0.5rem 15px; }
       @media (min-width: 1200px) {
         .card .card-header .header-block {
-          padding: 0 20px; 
+          padding: 0 20px;
         width: 100%;} }
       @media (max-width: 767px) {
         .card .card-header .header-block {
@@ -776,7 +775,7 @@ border-radius: 0;}
       padding-bottom: 3px;
       display: -webkit-inline-box;
       display: -ms-inline-flexbox;
-      display: inline-flex; 
+      display: inline-flex;
     width: 100%;}
     .card .card-header .btn {
       margin: 0; }
@@ -2363,7 +2362,7 @@ pre {
     padding: 0; }
     .footer .author > ul li {
       font-family: 'Lato', sans-serif;
-      display: inline-block; 
+      display: inline-block;
       font-size: 12px;}
       .footer .author > ul li:after {
         content: "|"; }
@@ -2401,8 +2400,8 @@ pre {
           justify-content: space-between; }
   @media (max-width: 991px) {
     .header {
-      left: 0; } 
-      
+      left: 0; }
+
       .header .header-block-nav .profile .img {
         width: 48px;
         height: 48px;
@@ -2410,7 +2409,7 @@ pre {
   @media (max-width: 767px) {
     .header {
       left: 0;
-      height: 50px; } 
+      height: 50px; }
       .header .header-block-nav .profile .img {
         width: 48px;
         height: 48px;
@@ -2419,7 +2418,7 @@ pre {
     position: fixed; }
   @media (max-width: 767px) {
     .header .header-block {
-      padding: 5px; } 
+      padding: 5px; }
       .header .header-block-nav .profile .img {
         width: 48px;
         height: 48px;
@@ -2631,7 +2630,7 @@ pre {
             background-color: #333e48; }
           .sidebar-right .nav > li > ul > li.active a {
             color: #ffffff; }
-      
+
       .sidebar-right-overlay {
         position: absolute;
         display: none;
@@ -2778,10 +2777,10 @@ pre {
       border-bottom: 1px solid #007FBC;
       padding-left: 40px;
       height: 40px;
-      width: 80%; 
+      width: 80%;
       transition: all 0.3s ease-in-out;}
       .header .header-block-search .input-container input:focus {
-        background-color: #fff; 
+        background-color: #fff;
         padding-left:50px;}
       @media (max-width: 767px) {
         .header .header-block-search .input-container input {
@@ -2922,7 +2921,7 @@ pre {
                 left: 0;
                 color: #fff; }
 
-.sidebar-header .brand { 
+.sidebar-header .brand {
   font-family: 'Open-Sans', sans-serif;
   color: #fff;
   font-size: 28px;
@@ -2982,7 +2981,7 @@ pre {
     bottom: 100%; }
   .header .header-block-nav .profile-dropdown-menu a {
     padding: 10px 15px; }
-    
+
     .header .header-block-nav .profile-dropdown-menu a .icon {
       color: #007fbc;
       text-align: center;
@@ -3605,7 +3604,7 @@ pre {
         .messenger-search{
           padding: 0 0 0 15px;
         }
-        
+
         .new-message, .settings {
           padding: 0 8px;
         }
@@ -3630,7 +3629,7 @@ pre {
           padding: 5px 10px;
         }
         .chat-close {
-          margin-left: 10px; 
+          margin-left: 10px;
         }
 
         .chat-body {

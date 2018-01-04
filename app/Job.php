@@ -4,8 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+
 class Job extends Model
 {
+
+  protected $fillable = [
+      'company_id', 'job_type_id', 'category_id', 'post_id', 'degree_id', 'title', 'description', 'position', 'terms', 'duration', 'hourly_wage', 'home', 'trial', 'work_time', 'weekends', 'address'
+  ];
+
     /**
      * Get Company Elequent object for company, that submitted the job offer
      * @return \App\Company
@@ -36,5 +42,13 @@ class Job extends Model
      */
     public function degree(){
       return $this->belongsTo('\App\Degree');
+    }
+
+    public function applies(){
+      return $this->hasMany('\App\Apply');
+    }
+
+    public function isApplied($user_id){
+        return sizeof($this->hasMany('\App\Apply')->where('user_id', '=', $user_id)->get()) == 1;
     }
 }

@@ -16,6 +16,7 @@
     <link href="{{ asset('css/homepage.css') }}" rel="stylesheet">
     <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/animate.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/jobr.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -33,8 +34,8 @@
 
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav text-uppercase blue">
-                        <li class="active"><a href="{{ url('/') }}"><i class="fa fa-fw fa-list" aria-hidden="true"></i> Delovna mesta</a></li>
-                        <li><a href="{{ url('podjetja') }}"><i class="fa fa-building-o  fa-fw"></i> Podjetja</a></li>
+                        <li class="active"><a href="{{ route('home') }}"><i class="fa fa-fw fa-list" aria-hidden="true"></i> Delovna mesta</a></li>
+                        <li><a href="{{ route('companies') }}"><i class="fa fa-building-o  fa-fw"></i> Podjetja</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -59,32 +60,36 @@
 
                                   @if(Auth::guard('company')->check())
                                     <li>
-                                      <a href="{{ route('company.profile', Auth::guard('company')->user()->id) }}">
-                                        <i class="fa fa-address-card-o fa-fw"></i> Profil
-                                      </a>
-                                    </li>
-                                    <li>
-                                      <a href="{{ route('company.profile', Auth::guard('company')->user()->id) }}">
+                                      <a href="{{ route('company.dashboard')}}">
                                         <i class="fa fa-bar-chart fa-fw"></i> Nadzorna plošča
-                                      </a>
-                                    </li>
-                                    <li>
-                                      <a href="{{ route('company.messages', Auth::guard('company')->user()->id) }}">
-                                        <i class="fa fa-envelope-o fa-fw"></i> Sporočila
                                       </a>
                                     </li>
                                   @else
                                     <li>
-                                      <a href="{{ route('user.profile', Auth::user()->id) }}">
-                                        <i class="fa fa-address-card-o fa-fw"></i> Profil
-                                      </a>
-                                    </li>
-                                    <li>
-                                      <a href="{{ route('user.messages', Auth::user()->id) }}">
-                                        <i class="fa fa-envelope-o fa-fw"></i> Sporočila
+                                      <a href="{{ route('applies')}}">
+                                        <i class="fa fa-pencil-square-o fa-fw"></i> Prijave
                                       </a>
                                     </li>
                                   @endif
+                                  <li>
+                                    <a href="{{ route('profile')}}">
+                                      <i class="fa fa-address-card-o fa-fw"></i> Profil
+                                    </a>
+                                  </li>
+                                  <li>
+                                    <a href="{{ route('messages')}}">
+                                      <i class="fa fa-envelope-o fa-fw"></i> Sporočila
+                                      @if(Auth::guard('company')->check())
+                                        @if(sizeof(Auth::guard('company')->user()->unreadMessages()) > 0)
+                                              {{sizeof(Auth::guard('company')->user()->unreadMessages())}}
+                                        @endif
+                                      @else
+                                        @if(sizeof(Auth::guard('web')->user()->unreadMessages()) > 0)
+                                          {{sizeof(Auth::guard('web')->user()->unreadMessages())}}
+                                        @endif
+                                      @endif
+                                    </a>
+                                  </li>
 
                                   <li>
                                       <a href="{{ route('logout') }}"
@@ -107,10 +112,10 @@
 
         @yield('content')
 
-        
+
     </div>
 
-    <footer> 
+    <footer>
             <div class="container footer-container">
                 <div class="row">
                     <div class="col-md-3 col-sm-6 footer-col">
@@ -135,7 +140,7 @@
                     <div class="col-md-3 col-sm-6 footer-col">
                         <h6 class="heading7">ZADNJE NOVICE</h6>
                         <div class="post">
-                            
+
                         </div>
                     </div>
                     <div class="col-md-3 col-sm-6 footer-col">

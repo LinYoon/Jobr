@@ -11,8 +11,11 @@
 |
 */
 
-Route::get('/', 'PagesController@index')->name('home');
-Route::get('/job/{id}', 'PagesController@job')->name('job.details');
+Route::get('/', 'PagesController@showJobs')->name('home');
+Route::get('/delo/{id}', 'PagesController@job')->name('job.details');
+Route::post('/delo/{id}', 'PagesController@jobApply')->name('apply');
+Route::get('/podjetja', "PagesController@showCompanies")->name('companies');
+Route::get('/podjejte/{id}', "PagesController@companyProfile")->name('company.profile');
 
 Auth::routes();
 
@@ -33,10 +36,19 @@ Route::prefix('registracija')->group(function(){
 });
 
 
-Route::get('/company-dashboard', "CompanyController@index")->name('company.dashboard');
+Route::get('/prijave', "UserController@applies")->name('applies');
 
-Route::get('/company/{id}', "PagesController@companyProfile")->name('company.profile');
-Route::get('/user/{id}', "PagesController@userProfile")->name('user.profile');
-Route::get('/user/{id}/sporocila', "PagesController@userMessages")->name('user.messages');
-Route::get('/company/{id}/sporocila', "CompanyController@companyMessages")->name('company.messages');
-Route::get('/new', "CompanyController@new")->name('job.new');
+Route::get('/profil', "UserAndCompanyController@profile")->name('profile');
+// profile controller ??? edit, and that bullshit
+
+Route::get('/sporocila', "MessagesController@messages")->name('messages');
+Route::get('/sporocila/{filter}', "MessagesController@messages")->name('messages.filter');
+Route::post('/novo-sporocilo-uporabnik', "MessagesController@newMessageToUser")->name('new.message.to.user');
+Route::post('/novo-sporocilo-podjetje', "MessagesController@newMessageToCompany")->name('new.message.to.company');
+
+
+Route::get('/novo-delo', "CompanyController@showNewJobForm")->name('job.new');
+Route::post('/novo-delo', "CompanyController@newJob")->name('job.new');
+Route::get('/podjejte/delo/{id}', "CompanyController@showJobStats")->name('company.job');
+Route::get('/uporabnik/{id}', "CompanyController@userProfile")->name('user.profile.company');
+Route::get('/company-dashboard', "CompanyController@index")->name('company.dashboard');

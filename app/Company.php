@@ -26,4 +26,21 @@ class Company extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function getCompanyJobs(){
+      return $this->hasMany('App\Job')->get();
+    }
+
+    public function messages(){
+      return $this->hasMany('\App\Message')->orderBy('created_at', 'DESC')->get();
+    }
+    public function sentMessages(){
+      return $this->hasMany('\App\Message')->orderBy('created_at', 'DESC')->where('sender', '=', 'company')->get();
+    }
+    public function receivedMessages(){
+      return $this->hasMany('\App\Message')->orderBy('created_at', 'DESC')->where('sender', '=', 'user')->get();
+    }
+    public function unreadMessages(){
+        return $this->hasMany('\App\Message')->where('sender', '=', 'user')->where('seen', '=', 0)->get();
+    }
 }

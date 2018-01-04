@@ -32,7 +32,7 @@ class CompanyRegisterController extends Controller
     public function register(Request $request){
       $this->validator($request->all())->validate();
 
-     //Create seller
+      //Create seller
       $company = $this->create($request->all());
 
       //Authenticates seller

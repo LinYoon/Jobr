@@ -17,7 +17,6 @@ class UpdateCompanyTable2 extends Migration
             $table->string('expertise_area')->nullable();
             $table->string('address')->nullable();
             $table->string('phone')->nullable();
-            $table->string('geo_area')->nullable();
         });
     }
 

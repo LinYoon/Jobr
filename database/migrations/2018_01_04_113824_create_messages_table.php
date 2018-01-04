@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAppliesTable extends Migration
+class CreateMessagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,14 @@ class CreateAppliesTable extends Migration
      */
     public function up()
     {
-        Schema::create('applies', function (Blueprint $table) {
+        Schema::create('messages', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('company_id');
             $table->integer('user_id');
-            $table->integer('job_id');
-            $table->integer('status')->default($value = 0);
+            $table->string('sender'); // 'company' / 'user'
+            $table->string('title');
+            $table->longtext('message');
+            $table->integer('seen')->default($value = 0); // false/true : 0/1
             $table->timestamps();
         });
     }
@@ -29,6 +32,6 @@ class CreateAppliesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('applies');
+        Schema::dropIfExists('messages');
     }
 }

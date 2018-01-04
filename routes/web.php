@@ -21,17 +21,17 @@ Auth::routes();
 
 Route::prefix('prijava')->group(function(){
   Route::get('/uporabnik', 'Auth\LoginController@showLoginForm')->name('login.user');
-  Route::post('/uporabnik', 'Auth\LoginController@login')->name('login.user.submit');
-  Route::get('/podjejte', 'Auth\CompanyLoginController@showLoginForm')->name('login.company');
-  Route::post('/podjejte', 'Auth\CompanyLoginController@login')->name('login.company.submit');
+  Route::post('/uporabnik', 'Auth\LoginController@login')->name('login.user');
+  Route::get('/podjetje', 'Auth\CompanyLoginController@showLoginForm')->name('login.company');
+  Route::post('/podjetje', 'Auth\CompanyLoginController@login')->name('login.company');
   Route::get('/', 'Auth\LoginController@showUserTypeSelection')->name('login');
 });
 
 Route::prefix('registracija')->group(function(){
   Route::get('/uporabnik', 'Auth\RegisterController@showRegistrationForm')->name('register.user');
-  Route::post('/uporabnik', 'Auth\RegisterController@register')->name('register.user.submit');
-  Route::get('/podjejte', 'Auth\CompanyRegisterController@showRegistrationForm')->name('register.company');
-  Route::post('/podjejte', 'Auth\CompanyRegisterController@register')->name('register.company.submit');
+  Route::post('/uporabnik', 'Auth\RegisterController@register')->name('register.user');
+  Route::get('/company', 'Auth\CompanyRegisterController@showRegistrationForm')->name('register.company');
+  Route::post('/company', 'Auth\CompanyRegisterController@register')->name('register.company');
   Route::get('/', 'Auth\RegisterController@showUserTypeSelection')->name('register');
 });
 
@@ -47,7 +47,6 @@ Route::post('/novo-sporocilo-uporabnik', "MessagesController@newMessageToUser")-
 Route::post('/novo-sporocilo-podjetje', "MessagesController@newMessageToCompany")->name('new.message.to.company');
 
 
-Route::get('/podjejte/{id}/sporocila', "CompanyController@companyMessages")->name('company.messages');
 Route::get('/novo-delo', "CompanyController@showNewJobForm")->name('job.new');
 Route::post('/novo-delo', "CompanyController@newJob")->name('job.new');
 Route::get('/podjejte/delo/{id}', "CompanyController@showJobStats")->name('company.job');

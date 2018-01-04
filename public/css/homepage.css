@@ -571,6 +571,21 @@ form .btn {
     font-size: 13px;
 }
 
+.input-70{
+  width: 68% !important;
+  margin-right: 1%;
+
+}
+
+.input-30{
+  width: 30% !important;
+  margin-left: 2px;
+}
+
+#msform input[type=radio]{
+  width: 20px;
+}
+
 #msform textarea, #msform select {
     padding: 5px;
 }

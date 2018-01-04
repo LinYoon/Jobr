@@ -38,8 +38,13 @@ Route::prefix('registracija')->group(function(){
 
 Route::get('/prijave', "UserController@applies")->name('applies');
 
-Route::get('/sporocila', "UserAndCompanyController@messages")->name('messages');
 Route::get('/profil', "UserAndCompanyController@profile")->name('profile');
+// profile controller ??? edit, and that bullshit
+
+Route::get('/sporocila', "MessagesController@messages")->name('messages');
+Route::post('/novo-sporocilo-uporabnik', "MessagesController@newMessageToUser")->name('new.message.to.user');
+Route::post('/novo-sporocilo-podjetje', "MessagesController@newMessageToCompany")->name('new.message.to.company');
+
 
 Route::get('/podjejte/{id}/sporocila', "CompanyController@companyMessages")->name('company.messages');
 Route::get('/novo-delo', "CompanyController@showNewJobForm")->name('job.new');

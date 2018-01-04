@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Job;
 use App\Company;
 use App\User;
-
+use App\Message;
 class CompanyController extends Controller
 {
     /**
@@ -77,7 +77,6 @@ class CompanyController extends Controller
         return redirect(route('company.dashboard'));
       }
     }
-
 
 
 

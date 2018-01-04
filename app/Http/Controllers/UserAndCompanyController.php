@@ -10,25 +10,13 @@ use App\Company;
 
 class UserAndCompanyController extends Controller
 {
-    public function messages(){
-        if(Auth::guard('web')->check()){
-          //TODO get user messages
-          return view('user-messages')->with('user', Auth::guard('web')->user());
-        }
-        else if(Auth::guard('company')->check()){
-          //TODO get company messages
-          return view('company-messages')->with('company', Auth::guard('company')->user());
-        }
-        return redirect(route('home'));
-    }
-
     public function profile(){
         if(Auth::guard('web')->check()){
           //TODO get user
           return view('user-profile')->with('user', Auth::guard('web')->user());
         }
         else if(Auth::guard('company')->check()){
-          //TODO get company 
+          //TODO get company
           return view('company-profile')->with('company', Auth::guard('company')->user());
         }
         return redirect(route('home'));

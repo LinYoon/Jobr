@@ -28,8 +28,14 @@
               </div>
               <div class="modal-body">
                 <p>Podjetju {{$company->name}} napišite novo sporočilo</p>
-                <form method="post" action="">
+                <form method="post" action="{{route('new.message.to.company')}}">
                   {{ csrf_field() }}
+
+                  <input type="hidden" id="company_id" class="form-control" name="company_id" value="{{$company->id}}"/>
+
+                  <div class="form-group">
+                      <input type="text" id="title" class="form-control" name="title" placeholder="Naslov" required/>
+                  </div>
 
                   <div class="form-group">
                         <textarea id="message" class="form-control" name="message"></textarea>

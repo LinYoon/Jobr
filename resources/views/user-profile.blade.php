@@ -28,11 +28,17 @@
               </div>
               <div class="modal-body">
                 <p>Uporabniku {{$user->first_name . ' ' . $user->last_name}} napišite novo sporočilo</p>
-                <form method="post" action="">
+                <form method="post" action="{{route('new.message.to.user')}}">
                   {{ csrf_field() }}
 
+                  <input type="hidden" id="user_id" class="form-control" name="user_id" value="{{$user->id}}"/>
+
                   <div class="form-group">
-                        <textarea id="message" class="form-control" name="message"></textarea>
+                      <input type="text" id="title" class="form-control" name="title" placeholder="Naslov" required/>
+                  </div>
+
+                  <div class="form-group">
+                      <textarea id="message" class="form-control" name="message" placeholder="Sporočilo" required></textarea>
                   </div>
 
                   <div class="form-group">

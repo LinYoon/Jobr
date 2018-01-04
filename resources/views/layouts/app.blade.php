@@ -79,6 +79,11 @@
                                   <li>
                                     <a href="{{ route('messages')}}">
                                       <i class="fa fa-envelope-o fa-fw"></i> Sporočila
+                                      @if(Auth::guard('company')->check())
+                                        {{sizeof(Auth::guard('company')->user()->unreadMessages)}}
+                                      @else
+                                        {{sizeof(Auth::guard('web')->user()->unreadMessages)}}
+                                      @endif
                                     </a>
                                   </li>
 

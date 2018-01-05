@@ -39,7 +39,7 @@ class CompanyRegisterController extends Controller
       $this->guard()->login($company);
 
       //TODO redirect to verify email page
-      return redirect(route('verify-send'));
+      return redirect(route('verify.send'));
     }
 
 

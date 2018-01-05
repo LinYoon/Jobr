@@ -14,8 +14,9 @@ class UpdateCompanyTable3 extends Migration
     public function up()
     {
         Schema::table('companies', function (Blueprint $table) {
-            $table->string('email_token')->nullable();
-            $table->boolean('verifed')->default($value = 0);
+          $table->string('email_token')->nullable();
+          $table->datetime('email_token_expire')->nullable();
+          $table->boolean('verifed')->default($value = 0);
         });
     }
 

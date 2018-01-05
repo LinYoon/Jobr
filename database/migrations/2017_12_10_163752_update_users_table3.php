@@ -15,6 +15,7 @@ class UpdateUsersTable3 extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
           $table->string('email_token')->nullable();
+          $table->datetime('email_token_expire')->nullable();
           $table->boolean('verifed')->default($value = 0);
         });
     }

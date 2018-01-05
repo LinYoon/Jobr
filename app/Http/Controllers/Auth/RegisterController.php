@@ -34,8 +34,8 @@ class RegisterController extends Controller
      * @var string
      */
 
-    //TODO verify email
-    protected $redirectTo = '/';
+
+    protected $redirectTo = '/send-verify';
 
     /**
      * Create a new controller instance.

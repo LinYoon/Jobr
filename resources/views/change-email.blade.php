@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container pt-30">
   <div class="row">
       <div class="col-md-8 col-md-offset-2">
-        <h1>Spremenite elektronski naslov</h1>
-        <p>trenutni naslov: {{$email}}
+        <h2>Spremenite elektronski naslov</h2>
+        <p>Vaš trenutni naslov je <strong class="underline">{{$email}}</strong>.</P>
 
         <form class="form-horizontal" method="POST" action="{{route('change.email')}}">
           {{ csrf_field() }}

@@ -55,8 +55,11 @@ class VerifyEmailController extends Controller
 
         return view('verifed-success')->with('email', $user->email);
       }
-      else{
+      else if($user){
         return view('verifed-error')->with('email', $user->email);
+      }
+      else{
+        return redirect()->route('home');
       }
 
     }

@@ -3,3 +3,16 @@
   font-size: 20px;
   font-weight: bold;
 }
+
+
+.pt-30{
+  padding-top: 30px;
+}
+
+.underline{
+  text-decoration: underline;
+}
+
+.alert{
+  font-weight: 500;
+}

@@ -1,13 +1,19 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container pt-30">
   <div class="row">
       <div class="col-md-8 col-md-offset-2">
-        Aktivacijska koda za <strong>{{$email}}</strong> je potekla.
-        <br>
-        <a href="{{route('verify.send')}}"><button class="btn btn-primary">Ponovno pošlji</button></a>
 
+        <div class="col-md-8 col-md-offset-2">
+          <div class="alert alert-danger">
+            <p>Aktivacijska koda za <strong class="underline">{{$email}}</strong> je potekla.</p>
+          </div>
+
+          <a href="{{route('verify.send')}}" class="btn col-md-3 col-md-offset-4">
+            Ponovno pošlji
+          </a>
+        </div>
 
       </div>
     </div>

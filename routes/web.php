@@ -47,6 +47,8 @@ Route::post('/spremeni-email', 'Auth\ChangeEmailController@changeEmail')->name('
 
 Route::group(['middleware' => 'isVerified'], function () {
     Route::get('/prijave', "UserController@applies")->name('applies');
+    Route::get('/narocnine', "UserController@showSubscriptions")->name('subscriptions');
+    Route::post('/narocnine', "UserController@updateSubscriptions")->name('update.subs');
 
     Route::get('/profil', "UserAndCompanyController@profile")->name('profile');
     // profile controller ??? edit, and that bullshit

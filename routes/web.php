@@ -62,4 +62,6 @@ Route::group(['middleware' => 'isVerified'], function () {
     Route::get('/podjejte/delo/{id}', "CompanyController@showJobStats")->name('company.job');
     Route::get('/uporabnik/{id}', "CompanyController@userProfile")->name('user.profile.company');
     Route::get('/company-dashboard', "CompanyController@index")->name('company.dashboard');
+    Route::get('/sprejmi', "CompanyController@applyYes")->name('apply.yes');
+    Route::get('/zavrni', "CompanyController@applyNo")->name('apply.no');
 });

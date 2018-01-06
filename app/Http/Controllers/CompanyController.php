@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Mail;
 use App\Job;
 use App\Company;
 use App\User;
 use App\Message;
+use App\Apply;
 class CompanyController extends Controller
 {
     /**
@@ -78,7 +80,33 @@ class CompanyController extends Controller
       }
     }
 
+    public function applyYes(Request $request){
+      $apply = Apply::getApplyFromJobAndUser($request->input('job_id'), $request->input('user_id'));
+      $apply->status = 1;
+      $apply->save();
 
+      Mail::send('email.apply-yes', ['apply' => $apply], function($message) use ($apply) {
+        $message->subject("Bili ste sprejeti na delovno mesto");
+        $message->from('noreply@jobr.linyoon.com', 'Jobr');
+        $message->to($apply->user->email);
+      });
+
+      return redirect()->back();
+    }
+
+    public function applyNo(Request $request){
+      $apply = Apply::getApplyFromJobAndUser($request->input('job_id'), $request->input('user_id'));
+      $apply->status = 2;
+      $apply->save();
+
+      Mail::send('email.apply-no', ['apply' => $apply], function($message) use ($apply) {
+        $message->subject("Niste bili sprejeti na delovno mesto");
+        $message->from('noreply@jobr.linyoon.com', 'Jobr');
+        $message->to($apply->user->email);
+      });
+
+      return redirect()->back();
+    }
 
 
 

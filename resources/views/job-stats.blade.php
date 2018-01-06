@@ -4,6 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
+          <h1>O oglasu</h1>
           <div class="panel panel-info">
             <div class="panel-heading"><h2>{{$job->title}}</h2></div>
             <div class="panel-body row">
@@ -30,7 +31,7 @@
           </div>
 
 
-            <h1>Users applied</h1>
+            <h1>Prijavljeni uporabniki</h1>
             @if(sizeof($applies) > 0)
               @foreach($applies as $apply)
                 @include('inc.job-user-applies')

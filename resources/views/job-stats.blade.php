@@ -10,8 +10,8 @@
             <div class="panel-body row">
               <div class="col-md-6">
                 <p>desc:{{$job->description}}</p>
-                <p>category:{{$job->category_id}}</p>
-                <p>job:{{$job->job_type_id}}</p>
+                <p>category:{{$job->category->category}}</p>
+                <p>type:{{$job->type->type}}</p>
 
                 <p>pos:{{$job->position}}</p>
                 <p>terms: {{$job->terms}}</p>

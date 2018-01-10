@@ -13,13 +13,42 @@ use App\Apply;
 class PagesController extends Controller
 {
   public function showJobs(Request $request){
-        return view('home')->with('jobs', $this->getJobs($request));
+        return view('home')->with('jobs', $this->getAllJobs($request));
     }
 
-    private function getJobs(Request $request){
-      // TODO apply filters, and order by
+    private function getAllJobs(Request $request){
       return Job::orderBy('updated_at', 'desc')->get();
     }
+
+
+    public function getJobs(Request $request){
+      $jobs = Job::orderBy('updated_at', 'desc');
+
+      // Apply filters
+      if(sizeof($request->input('categories')) > 0){
+        $jobs->whereIn('category_id', array_values($request->input('categories')));
+      }
+      /*
+      if(sizeof($request->input('regions')) > 0){
+        $jobs->whereIn('region_id', array_values($request->input('regions')));
+      }
+      */
+
+      if(sizeof($request->input('types')) > 0){
+        $jobs->whereIn('job_type_id', array_values($request->input('types')));
+      }
+
+      if(sizeof($request->input('degrees')) > 0){
+        $jobs->whereIn('degree_id', array_values($request->input('degrees')));
+      }
+
+      if(sizeof($request->input('home')) > 0){
+        $jobs->whereIn('home', array_values($request->input('home')));
+      }
+
+      return view('inc.job-list')->with('jobs', $jobs->get());
+    }
+
 
     public function showCompanies(){
       $companies = Company::orderBy('name', 'desc')->get();

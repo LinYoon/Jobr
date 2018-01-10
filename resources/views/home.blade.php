@@ -42,246 +42,46 @@
         <div class="panel panel-default jobs-panel">
           <div class="panel-body">
 		  <nav id="column_left">
-		<ul class="nav nav-list">
-		  	<li><button class="btn btn-info">Počisti vse kriterije</button></li>
-		  	<li>
+	      <ul class="nav nav-list">
+
+        <form action="{{route('getJobs')}}" method="GET" id="filters">
+          <!--<input type="submit">-->
+        <li><button class="btn btn-info">Počisti vse kriterije</button></li>
+
+        <li>
 		    	<a class="accordion-heading" data-toggle="collapse" data-target="#submenu1">
 					  <span class="nav-header-primary">Regija<span class="pull-right"><i class="fa fa-fw fa-plus"></i></span></span>
 					  <span class="criteria">Ni izbranih kriterijev</span>
 		    	</a>
 
 			    <ul class="nav nav-list" id="submenu1" class="submenu">
-						<li>
-							<label class="checkbox-inline">
-								<input type="checkbox" value="">Osrednjeslovenska <span class="job-count pull-right">[164]</span>
-							</label>
-						</li>
-						<li>
-							<label class="checkbox-inline">
-								<input type="checkbox" value="">Podravska <span class="job-count pull-right">[33]</span>
-							</label>
-						</li>
-						<li>
-							<label class="checkbox-inline">
-								<input type="checkbox" value="">Koroška <span class="job-count pull-right">[22]</span>
-							</label>
-						</li>
-						<li>
-							<label class="checkbox-inline">
-								<input type="checkbox" value="">Pomurska <span class="job-count pull-right">[13]</span>
-							</label>
-						</li>
-						<li>
-							<label class="checkbox-inline">
-								<input type="checkbox" value="">Savinjska <span class="job-count pull-right">[5]</span>
-							</label>
-						</li>
-						<li>
-							<label class="checkbox-inline">
-								<input type="checkbox" value="">Zasavska <span class="job-count pull-right">[64]</span>
-							</label>
-						</li>
-						<li>
-							<label class="checkbox-inline">
-								<input type="checkbox" value="">Gorenjska <span class="job-count pull-right">[8]</span>
-							</label>
-						</li>
-						<li>
-							<label class="checkbox-inline">
-								<input type="checkbox" value="">Goriška <span class="job-count pull-right">[4]</span>
-							</label>
-						</li>
-						<li>
-							<label class="checkbox-inline">
-								<input type="checkbox" value="">Obalna <span class="job-count pull-right">[1]</span>
-							</label>
-						</li>
-						<li>
-							<label class="checkbox-inline">
-								<input type="checkbox" value="">Primorsko-notranjska <span class="job-count pull-right">[2]</span>
-							</label>
-						</li>
-						<li>
-							<label class="checkbox-inline">
-								<input type="checkbox" value="">Dolenjska <span class="job-count pull-right">[4]</span>
-							</label>
-						</li>
-						<li>
-							<label class="checkbox-inline">
-								<input type="checkbox" value="">Tujina <span class="job-count pull-right">[56]</span>
-							</label>
-						</li>
-						<li>
-							<label class="checkbox-inline">
-								<input type="checkbox" value="">Spodnjeposavska <span class="job-count pull-right">[15]</span>
-							</label>
-						</li>
+            @foreach(App\Region::all() as $region)
+            <li>
+              <label class="checkbox-inline">
+                <input type="checkbox" value="{{$region->id}}" name="regions[{{$region->id}}]" onchange="applyFilter()">
+                {{$region->region}} <span class="job-count pull-right">[{{rand(3,20)}}]</span>
+              </label>
+            </li>
+            @endforeach
 			    </ul>
 			  </li>
 
 			  <li>
 		    	<a class="accordion-heading" data-toggle="collapse" data-target="#submenu2">
-					  <span class="nav-header-primary">Vrsta dela<span class="pull-right"><i class="fa fa-fw fa-plus"></i></span></span>
+					  <span class="nav-header-primary">Kategorija dela<span class="pull-right"><i class="fa fa-fw fa-plus"></i></span></span>
 					  <span class="criteria">Ni izbranih kriterijev</span>
 		    	</a>
 
-			    <ul class="nav nav-list collapse" id="submenu2" class="submenu">
-						<li>
-							<label class="checkbox-inline">
-								<input type="checkbox" value="">Administracija <span class="job-count pull-right">[164]</span>
-							</label>
-						</li>
-						<li>
-							<label class="checkbox-inline">
-								<input type="checkbox" value="">Bančništvo, finance <span class="job-count pull-right">[15]</span>
-							</label>
-						</li>
-						<li>
-							<label class="checkbox-inline">
-								<input type="checkbox" value="">Elektrotehnika, elektronika, telekomunikacije <span class="job-count pull-right">[33]</span>
-							</label>
-						</li>
-						<li>
-							<label class="checkbox-inline">
-								<input type="checkbox" value="">Farmacija, kemija <span class="job-count pull-right">[15]</span>
-							</label>
-						</li>
-						<li>
-							<label class="checkbox-inline">
-								<input type="checkbox" value="">Gradbeništvo, arhitektura, geodezija <span class="job-count pull-right">[22]</span>
-							</label>
-						</li>
-						<li>
-							<label class="checkbox-inline">
-								<input type="checkbox" value="">Gostinstvo, turizem, potovanje <span class="job-count pull-right">[15]</span>
-							</label>
-						</li>
-						<li>
-							<label class="checkbox-inline">
-								<input type="checkbox" value="">Javni sektor, nevladne organizacije <span class="job-count pull-right">[13]</span>
-							</label>
-						</li>
-						<li>
-							<label class="checkbox-inline">
-								<input type="checkbox" value="">Izobraževanje, prevajanje, kultura, šport <span class="job-count pull-right">[15]</span>
-							</label>
-						</li>
-						<li>
-							<label class="checkbox-inline">
-								<input type="checkbox" value="">Kmetijstvo, ribištvo, gozdarstvo <span class="job-count pull-right">[5]</span>
-							</label>
-						</li>
-						<li>
-							<label class="checkbox-inline">
-								<input type="checkbox" value="">Kadrovanje, HR <span class="job-count pull-right">[15]</span>
-							</label>
-						</li>
-						<li>
-							<label class="checkbox-inline">
-								<input type="checkbox" value="">Kreativa, design <span class="job-count pull-right">[64]</span>
-							</label>
-						</li>
-						<li>
-							<label class="checkbox-inline">
-								<input type="checkbox" value="">Komerciala, prodaja <span class="job-count pull-right">[15]</span>
-							</label>
-						</li>
-						<li>
-							<label class="checkbox-inline">
-								<input type="checkbox" value="">Marketing, PR <span class="job-count pull-right">[8]</span>
-							</label>
-						</li>
-						<li>
-							<label class="checkbox-inline">
-								<input type="checkbox" value="">Matematika, fizika in naravoslovje <span class="job-count pull-right">[15]</span>
-							</label>
-						</li>
-						<li>
-							<label class="checkbox-inline">
-								<input type="checkbox" value="">Mediji <span class="job-count pull-right">[4]</span>
-							</label>
-						</li>
-						<li>
-							<label class="checkbox-inline">
-								<input type="checkbox" value="">Nepremičnine <span class="job-count pull-right">[15]</span>
-							</label>
-						</li>
-						<li>
-							<label class="checkbox-inline">
-								<input type="checkbox" value="">Osebne storitve in varovanje <span class="job-count pull-right">[1]</span>
-							</label>
-						</li>
-						<li>
-							<label class="checkbox-inline">
-								<input type="checkbox" value="">Pravo in družboslovje <span class="job-count pull-right">[15]</span>
-							</label>
-						</li>
-						<li>
-							<label class="checkbox-inline">
-								<input type="checkbox" value="">Prehrambena industrija, živilstvo, veterina <span class="job-count pull-right">[2]</span>
-							</label>
-						</li>
-						<li>
-							<label class="checkbox-inline">
-								<input type="checkbox" value="">Proizvodnja <span class="job-count pull-right">[15]</span>
-							</label>
-						</li>
-						<li>
-							<label class="checkbox-inline">
-								<input type="checkbox" value="">Računalništvo, programiranje <span class="job-count pull-right">[4]</span>
-							</label>
-						</li>
-						<li>
-							<label class="checkbox-inline">
-								<input type="checkbox" value="">Računovodstvo, revizija <span class="job-count pull-right">[15]</span>
-							</label>
-						</li>
-						<li>
-							<label class="checkbox-inline">
-								<input type="checkbox" value="">Socialne storitve <span class="job-count pull-right">[56]</span>
-							</label>
-						</li>
-						<li>
-							<label class="checkbox-inline">
-								<input type="checkbox" value="">Strojništvo, metalurgija, rudarstvo <span class="job-count pull-right">[15]</span>
-							</label>
-						</li>
-						<li>
-							<label class="checkbox-inline">
-								<input type="checkbox" value="">Tehnične storitve <span class="job-count pull-right">[15]</span>
-							</label>
-						</li>
-						<li>
-							<label class="checkbox-inline">
-								<input type="checkbox" value="">Transport, nabava, logistika <span class="job-count pull-right">[15]</span>
-							</label>
-						</li>
-						<li>
-							<label class="checkbox-inline">
-								<input type="checkbox" value="">Trgovina <span class="job-count pull-right">[15]</span>
-							</label>
-						</li>
-						<li>
-							<label class="checkbox-inline">
-								<input type="checkbox" value="">Upravljanje, svetovanje, vodenje <span class="job-count pull-right">[15]</span>
-							</label>
-						</li>
-						<li>
-							<label class="checkbox-inline">
-								<input type="checkbox" value="">Zavarovalništvo <span class="job-count pull-right">[15]</span>
-							</label>
-						</li>
-						<li>
-							<label class="checkbox-inline">
-								<input type="checkbox" value="">Zdravstvo, nega <span class="job-count pull-right">[15]</span>
-							</label>
-						</li>
-						<li>
-							<label class="checkbox-inline">
-								<input type="checkbox" value="">Znanost, tehnologija <span class="job-count pull-right">[15]</span>
-							</label>
-						</li>
-			    </ul>
+          <ul class="nav nav-list collapse" id="submenu2" class="submenu">
+            @foreach(App\Category::all() as $category)
+            <li>
+              <label class="checkbox-inline">
+                <input type="checkbox" value="{{$category->id}}" name="categories[{{$category->id}}]" onchange="applyFilter()">
+                {{$category->category}} <span class="job-count pull-right">[{{rand(3,20)}}]</span>
+              </label>
+            </li>
+            @endforeach
+         </ul>
 			  </li>
 
 			  <li>
@@ -291,56 +91,14 @@
 		    	</a>
 
 			    <ul class="nav nav-list collapse" id="submenu3" class="submenu">
-						<li>
-							<label class="checkbox-inline">
-								<input type="checkbox" value="">I. - 7 razredov osnovne šole ali manj <span class="job-count pull-right">[164]</span>
-							</label>
-						</li>
-						<li>
-							<label class="checkbox-inline">
-								<input type="checkbox" value="">II. - dokončana osnovna šola <span class="job-count pull-right">[33]</span>
-							</label>
-						</li>
-						<li>
-							<label class="checkbox-inline">
-								<input type="checkbox" value="">III. - dokončana poklicna šola <span class="job-count pull-right">[22]</span>
-							</label>
-						</li>
-						<li>
-							<label class="checkbox-inline">
-								<input type="checkbox" value="">IV. - dokončana srednja strokovna šola <span class="job-count pull-right">[13]</span>
-							</label>
-						</li>
-						<li>
-							<label class="checkbox-inline">
-								<input type="checkbox" value="">V. - dokončana gimnazija in ostale štiriletne šole <span class="job-count pull-right">[5]</span>
-							</label>
-						</li>
-						<li>
-							<label class="checkbox-inline">
-								<input type="checkbox" value="">VI./1 - višješolski strokovni programi <span class="job-count pull-right">[64]</span>
-							</label>
-						</li>
-						<li>
-							<label class="checkbox-inline">
-								<input type="checkbox" value="">VI./2 - visokošolski strokovni programi / 1. bolonjska stopnja <span class="job-count pull-right">[8]</span>
-							</label>
-						</li>
-						<li>
-							<label class="checkbox-inline">
-								<input type="checkbox" value="">VII. - univerzitetni programi / 2. bolonjska stopnja <span class="job-count pull-right">[4]</span>
-							</label>
-						</li>
-						<li>
-							<label class="checkbox-inline">
-								<input type="checkbox" value="">VIII./1 - magisteriji znanosti <span class="job-count pull-right">[1]</span>
-							</label>
-						</li>
-						<li>
-							<label class="checkbox-inline">
-								<input type="checkbox" value="">VIII./2 - doktorati znanosti / 3. bolonjska stopnja <span class="job-count pull-right">[2]</span>
-							</label>
-						</li>
+            @foreach(App\Degree::all() as $degree)
+            <li>
+              <label class="checkbox-inline">
+                <input type="checkbox" value="{{$degree->id}}" name="degrees[{{$degree->id}}]" onchange="applyFilter()">
+                {{$degree->name}} <span class="job-count pull-right">[{{rand(3,20)}}]</span>
+              </label>
+            </li>
+            @endforeach
 			    </ul>
 			  </li>
 
@@ -350,78 +108,70 @@
 					  <span class="criteria">Ni izbranih kriterijev</span>
 		    	</a>
 
-			    <ul class="nav nav-list collapse" id="submenu4" class="submenu">
-						<li>
-							<label class="checkbox-inline">
-								<input type="checkbox" value="">Redno, nedoločen delovni čas <span class="job-count pull-right">[164]</span>
-							</label>
-						</li>
-						<li>
-							<label class="checkbox-inline">
-								<input type="checkbox" value="">Redno, določen delovni čas <span class="job-count pull-right">[33]</span>
-							</label>
-						</li>
-						<li>
-							<label class="checkbox-inline">
-								<input type="checkbox" value="">Preko S.P. <span class="job-count pull-right">[22]</span>
-							</label>
-						</li>
-						<li>
-							<label class="checkbox-inline">
-								<input type="checkbox" value="">Projektno delo <span class="job-count pull-right">[13]</span>
-							</label>
-						</li>
-						<li>
-							<label class="checkbox-inline">
-								<input type="checkbox" value="">Pogodbeno delo <span class="job-count pull-right">[5]</span>
-							</label>
-						</li>
-						<li>
-							<label class="checkbox-inline">
-								<input type="checkbox" value="">Študentsko delo <span class="job-count pull-right">[64]</span>
-							</label>
-						</li>
-						<li>
-							<label class="checkbox-inline">
-								<input type="checkbox" value="">Prostovoljno <span class="job-count pull-right">[8]</span>
-							</label>
-						</li>
+
+          <ul class="nav nav-list collapse" id="submenu4" class="submenu">
+            @foreach(App\JobType::all() as $type)
+            <li>
+              <label class="checkbox-inline">
+                <input type="checkbox" value="{{$type->id}}" name="types[{{$type->id}}]" onchange="applyFilter()">
+                {{$type->type}} <span class="job-count pull-right">[{{rand(3,20)}}]</span>
+              </label>
+            </li>
+            @endforeach
 			    </ul>
 			  </li>
 
-			  <li>
+        <li>
 		    	<a class="accordion-heading" data-toggle="collapse" data-target="#submenu5">
 					  <span class="nav-header-primary">Vrsta zaposlitve<span class="pull-right"><i class="fa fa-fw fa-plus"></i></span></span>
 					  <span class="criteria">Ni izbranih kriterijev</span>
 		    	</a>
-
-			    <ul class="nav nav-list collapse" id="submenu5" class="submenu">
-						<li>
-							<label class="checkbox-inline">
-								<input type="checkbox" value="">Polni delovni čas <span class="job-count pull-right">[164]</span>
-							</label>
-						</li>
-						<li>
-							<label class="checkbox-inline">
-								<input type="checkbox" value="">Delni delovni čas <span class="job-count pull-right">[33]</span>
-							</label>
-						</li>
-						<li>
-							<label class="checkbox-inline">
-								<input type="checkbox" value="">Projektno delo <span class="job-count pull-right">[22]</span>
-							</label>
-						</li>
-			    </ul>
+          <ul class="nav nav-list collapse" id="submenu5" class="submenu">
+            spremeni na čas dopoldne, popoudne
+            @foreach(App\JobType::all() as $type)
+            <li>
+              <label class="checkbox-inline">
+                <input type="checkbox" value="{{$type->id}}" name="types[{{$type->id}}]" onchange="applyFilter()">
+                {{$type->type}} <span class="job-count pull-right">[{{rand(3,20)}}]</span>
+              </label>
+            </li>
+            @endforeach
+          </ul>
 			  </li>
 
+        <li>
+		    	<a class="accordion-heading" data-toggle="collapse" data-target="#submenu6">
+					  <span class="nav-header-primary">Delo od doma<span class="pull-right"><i class="fa fa-fw fa-plus"></i></span></span>
+					  <span class="criteria">Ni izbranih kriterijev</span>
+		    	</a>
+          <ul class="nav nav-list collapse" id="submenu6" class="submenu">
+
+
+            <li>
+              <label class="checkbox-inline">
+                <input type="checkbox" value="0" name="home[0]" onchange="applyFilter()">
+                Ja <span class="job-count pull-right">[{{rand(3,20)}}]</span>
+              </label>
+            </li>
+
+            <li>
+              <label class="checkbox-inline">
+                <input type="checkbox" value="1" name="home[1]" onchange="applyFilter()">
+                Ne <span class="job-count pull-right">[{{rand(3,20)}}]</span>
+              </label>
+            </li>
+
+          </ul>
+			  </li>
+      </form>
 		</ul>
 
 		</nav>
-          </div>
-        </div>
       </div>
+    </div>
+  </div>
 
-      <div class="col-md-8">
+    <div class="col-md-8">
 		  <div class="row">
 			  <div class="col-md-6">
           <ul class="pagination">
@@ -449,9 +199,9 @@
 
 		  </div>
       </div>
-            @foreach($jobs as $job)
-              @include('inc.job')
-            @endforeach
+        <div id="job-list">
+            @include('inc.job-list')
           </div>
+        </div>
       </div>
 @endsection

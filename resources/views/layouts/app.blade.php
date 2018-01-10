@@ -175,6 +175,7 @@
     <script src="{{ asset('js/bootstrap.js') }}"></script>
     <script src="{{ asset('js/wow.min.js') }}"></script>
     <script src="{{ asset('js/custom.js') }}"></script>
+    <script src="{{ asset('js/jobr.js') }}"></script>
     <script>
         new WOW().init();
     </script>

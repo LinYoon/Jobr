@@ -17,6 +17,8 @@ Route::post('/delo/{id}', 'PagesController@jobApply')->name('apply');
 Route::get('/podjetja', "PagesController@showCompanies")->name('companies');
 Route::get('/podjejte/{id}', "PagesController@companyProfile")->name('company.profile');
 
+Route::get('/filters', "PagesController@getJobs")->name('getJobs');
+
 Auth::routes();
 
 Route::prefix('prijava')->group(function(){

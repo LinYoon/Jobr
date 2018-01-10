@@ -16,3 +16,7 @@
 .alert{
   font-weight: 500;
 }
+
+.checkbox-inline{
+  margin-left: 0 !important; /*subscriptions*/
+}

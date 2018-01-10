@@ -90,6 +90,14 @@
                                       @endif
                                     </a>
                                   </li>
+                                  @if(Auth::guard('web')->check())
+                                  <li>
+                                    <a href="{{ route('subscriptions')}}">
+                                      <i class="fa fa-newspaper-o fa-fw"></i> Naročnine
+                                    </a>
+                                  </li>
+                                  @endif
+
 
                                   <li>
                                       <a href="{{ route('logout') }}"
@@ -167,6 +175,7 @@
     <script src="{{ asset('js/bootstrap.js') }}"></script>
     <script src="{{ asset('js/wow.min.js') }}"></script>
     <script src="{{ asset('js/custom.js') }}"></script>
+    <script src="{{ asset('js/jobr.js') }}"></script>
     <script>
         new WOW().init();
     </script>

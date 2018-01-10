@@ -42,6 +42,17 @@ class User extends Authenticatable
     }
     public function unreadMessages(){
       return $this->hasMany('\App\Message')->where('sender', '=', 'company')->where('seen', '=', 0)->get();
+    }
 
+    // Subscriptions
+    public function isSubbedRegion($region_id){
+        return $this->hasMany('\App\SubscribeRegion')->where('region_id', '=', $region_id)->count() > 0;
+    }
+
+    public function isSubbedCategory($category_id){
+        return $this->hasMany('\App\SubscribeCategory')->where('category_id', '=', $category_id)->count() > 0;
+    }
+    public function isSubbedType($type_id){
+        return $this->hasMany('\App\SubscribeType')->where('job_type_id', '=', $type_id)->count() > 0;
     }
 }

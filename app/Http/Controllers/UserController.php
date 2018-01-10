@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Job;
 use App\Company;
+use App\SubscribeRegion;
+use App\SubscribeCategory;
+use App\SubscribeType;
 
 class UserController extends Controller
 {
@@ -23,5 +26,51 @@ class UserController extends Controller
       $user = Auth::guard('web')->user();
       $applies = $user->applies();
       return view('user-applies')->with(['user' => $user, 'applies' => $applies]);
+    }
+
+    public function showSubscriptions(){
+      $user_id = Auth::guard('web')->user()->id;
+      $region = SubscribeRegion::where('user_id', '=', $user_id)->pluck('region_id')->toArray();
+      $category = SubscribeCategory::where('user_id', '=', $user_id)->pluck('category_id')->toArray();
+      $type = SubscribeType::where('user_id', '=', $user_id)->pluck('job_type_id')->toArray();
+
+      return view('user-subs')->with([
+        'regionSubs' => $region,
+        'categorySubs' => $category,
+        'typeSubs' => $type,
+      ]);
+    }
+
+    public function updateSubscriptions(Request $request){
+      $user_id = Auth::guard('web')->user()->id;
+      $regions = $request->input('regions');
+      $categories = $request->input('categories');
+      $types = $request->input('types');
+
+      SubscribeRegion::where('user_id', '=', $user_id)->delete();
+      foreach ($regions as $region => $region_id) {
+        SubscribeRegion::create([
+          'user_id' => $user_id,
+          'region_id' => $region_id
+        ]);
+      }
+
+      SubscribeCategory::where('user_id', '=', $user_id)->delete();
+      foreach ($categories as $category => $category_id) {
+        SubscribeCategory::create([
+          'user_id' => $user_id,
+          'category_id' => $category_id
+        ]);
+      }
+
+      SubscribeType::where('user_id', '=', $user_id)->delete();
+      foreach ($types as $type => $type_id) {
+        SubscribeType::create([
+          'user_id' => $user_id,
+          'job_type_id' => $type_id
+        ]);
+      }
+
+      return redirect()->route('subscriptions');
     }
 }

@@ -17,6 +17,8 @@ Route::post('/delo/{id}', 'PagesController@jobApply')->name('apply');
 Route::get('/podjetja', "PagesController@showCompanies")->name('companies');
 Route::get('/podjejte/{id}', "PagesController@companyProfile")->name('company.profile');
 
+Route::get('/filters', "PagesController@getJobs")->name('getJobs');
+
 Auth::routes();
 
 Route::prefix('prijava')->group(function(){
@@ -47,6 +49,8 @@ Route::post('/spremeni-email', 'Auth\ChangeEmailController@changeEmail')->name('
 
 Route::group(['middleware' => 'isVerified'], function () {
     Route::get('/prijave', "UserController@applies")->name('applies');
+    Route::get('/narocnine', "UserController@showSubscriptions")->name('subscriptions');
+    Route::post('/narocnine', "UserController@updateSubscriptions")->name('update.subs');
 
     Route::get('/profil', "UserAndCompanyController@profile")->name('profile');
     // profile controller ??? edit, and that bullshit

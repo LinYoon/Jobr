@@ -42,8 +42,9 @@ class CompanyController extends Controller
     public function newJob(Request $request){
       $this->newJobValidator($request->all())->validate();
       $data = $request->input();
+
       // Create new job
-      $jobID = Job::create([
+      $job = Job::create([
           'company_id' => Auth::guard('company')->user()->id,
           'job_type_id' => $data['job_type'],
           'category_id' => $data['category'],
@@ -62,8 +63,28 @@ class CompanyController extends Controller
           'address' => $data['address']
       ]);
 
+      // send mail to users if subscribed
+      $users = User::all();
+
+      //TODO change region based on post
+      $region = 1;
+      $category = $data['category'];
+      $type = $data['job_type'];
+
+      foreach ($users as $user) {
+        if($user->isSubbedRegion($region) &&
+          $user->isSubbedCategory($category) &&
+          $user->isSubbedType($type)){
+            Mail::send('email.subscribe', ['job' => $job, 'user' => $user], function($message) use ($user) {
+              $message->subject("Novo delovno mesto za vas");
+              $message->from('noreply@jobr.linyoon.com', 'Jobr');
+              $message->to($user->email);
+            });
+          }
+      }
+
       // Redirect to company view/edit of job
-      return redirect(route('company.job', $jobID));
+      return redirect(route('company.job', $job));
     }
 
     public function showJobStats($id){;

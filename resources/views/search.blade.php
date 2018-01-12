@@ -459,9 +459,11 @@
 
 		  </div>
       </div>
-            @foreach($jobs as $job)
+      @if(isset($details))
+            @foreach($details as $job)
               @include('inc.job')
             @endforeach
+            @endif
           </div>
       </div>
 @endsection

@@ -31,3 +31,9 @@
 .navbar-custom{
   margin-bottom: 30px !important;
 }
+
+
+.company-links{
+  color:inherit;
+  text-decoration: none;
+}

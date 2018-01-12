@@ -52,7 +52,7 @@ class PagesController extends Controller
 
 
     public function showCompanies(){
-      $companies = Company::orderBy('name', 'desc')->get();
+      $companies = Company::orderBy('name', 'asc')->get();
       return view('companies')->with('companies', $companies);
     }
 

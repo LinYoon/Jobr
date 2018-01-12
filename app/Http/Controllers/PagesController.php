@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use App\Job;
 use App\User;
 use App\Company;
@@ -72,10 +73,18 @@ class PagesController extends Controller
         $user_id = Auth::guard('web')->user()->id;
         $applied = $job->isApplied($user_id);
         if(!$applied){
-          Apply::create([
+          $apply = Apply::create([
             'user_id' => $user_id,
             'job_id' => $job_id,
           ]);
+
+          // Send Mail
+          Mail::send('email.new-apply', ['apply' => $apply], function($message) use ($apply) {
+            $message->subject("Nova prijava na oglas");
+            $message->from('noreply@jobr.linyoon.com', 'Jobr');
+            $message->to($apply->user->email);
+          });
+
         }else{
           $apply = Apply::where('user_id', '=', $user_id)->where('job_id', '=', $job_id);
           $apply->delete();

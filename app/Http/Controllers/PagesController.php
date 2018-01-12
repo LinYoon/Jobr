@@ -82,7 +82,7 @@ class PagesController extends Controller
           Mail::send('email.new-apply', ['apply' => $apply], function($message) use ($apply) {
             $message->subject("Nova prijava na oglas");
             $message->from('noreply@jobr.linyoon.com', 'Jobr');
-            $message->to($apply->user->email);
+            $message->to($apply->job->company->email);
           });
 
         }else{

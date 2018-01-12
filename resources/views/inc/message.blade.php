@@ -9,10 +9,8 @@
         Za: {{$msg->company->name}}
       @else
         Od: {{$msg->company->name}}
-        <button class="btn btn-primary" data-toggle="collapse" data-target="#message-{{$msg->id}}">Odpiši</button>
-        <div id="message" class="collapse">
-        Lorem ipsum dolor text....
-        </div>
+        <button class="btn btn-primary btn-reply" data-toggle="collapse" data-target="#message-{{$msg->id}}">Odpiši</button>
+        <div id="message" class="collapse"></div>
       @endif
 
     @else
@@ -20,7 +18,7 @@
         Za: {{$msg->user->first_name . ' ' . $msg->user->last_name}}
       @else
         Od: {{$msg->user->first_name . ' ' . $msg->user->last_name}}
-        <button class="btn btn-primary" data-toggle="collapse" data-target="#message-{{$msg->id}}">Odpiši</button>
+        <button class="btn btn-primary btn-reply" data-toggle="collapse" data-target="#message-{{$msg->id}}">Odpiši</button>
 
       @endif
     @endif

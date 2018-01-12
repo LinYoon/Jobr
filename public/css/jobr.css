@@ -20,3 +20,14 @@
 .checkbox-inline{
   margin-left: 0 !important; /*subscriptions*/
 }
+
+
+.btn-reply{
+  float:right;
+  font-size: 12px;
+  margin-top: -5px;
+}
+
+.navbar-custom{
+  margin-bottom: 30px !important;
+}

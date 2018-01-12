@@ -81,7 +81,6 @@ html,
 body {
   padding: 0;
   margin: 0;
-  min-height: 100%;
   font-family: 'Lato', sans-serif;
   color: #4f5f6f;
   overflow-x: hidden; }
@@ -127,7 +126,6 @@ body {
   position: relative;
   width: 100%;
   padding-left: 230px;
-  min-height: 100vh;
   margin: 0 auto;
   left: 0;
   background-color: #fff;
@@ -3672,3 +3670,5 @@ pre {
           display: block;
           margin-bottom: 5px;
         }
+
+        

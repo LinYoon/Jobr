@@ -42,7 +42,7 @@
                     <ul class="nav navbar-nav navbar-right text-uppercase">
                         <!-- Authentication Links -->
                         @if ( !Auth::guard('web')->check() && !Auth::guard('company')->check())
-                            <li class="login-li"><a href="{{ route('login') }}"><i class="fa fa-sign-in fa-fw"></i> Prijava</a></li>
+                            <li><a href="{{ route('login') }}"><i class="fa fa-sign-in fa-fw"></i> Prijava</a></li>
                             <li><a href="{{ route('register') }}"><i class="fa fa-user-plus fa-fw"></i> Registracija</a></li>
                         @else
                             <li class="dropdown">
@@ -160,13 +160,34 @@
             </div>
         </footer>
 
-    <!-- Scripts -->
+    <!-- Scripts -->  
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/jquery.easing.js') }}"></script>
     <script src="{{ asset('js/bootstrap.js') }}"></script>
     <script src="{{ asset('js/wow.min.js') }}"></script>
     <script src="{{ asset('js/custom.js') }}"></script>
+    <script>
+    // get the value of the bottom of the #main element by adding the offset of that element plus its height, set it as a variable
+//var mainbottom = $('#scroll-past').offset().top + $('#scroll-past').height();
+// on scroll, 
+/*$(window).on("scroll", function(){
+    console.log(1);
+    // we round here to reduce a little workload
+    /*
+    var stop = Math.round($(window).scrollTop());
+
+    if (stop > mainbottom) {
+        $('.navbar-default').css("background", "linear-gradient(to right, rgba(33,147,176,1) 0%,rgba(109,213,237,1) 100%) !important");
+    } else {
+        $('.navbar-default').css("background", "transparent !important");
+    }
+    */
+
+/*});
+*/
+console.log(111);
+</script>
     <script>
         new WOW().init();
     </script>

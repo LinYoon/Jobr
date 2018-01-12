@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Http\Request;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -51,9 +53,10 @@ Route::group(['middleware' => 'isVerified'], function () {
     Route::get('/prijave', "UserController@applies")->name('applies');
     Route::get('/narocnine', "UserController@showSubscriptions")->name('subscriptions');
     Route::post('/narocnine', "UserController@updateSubscriptions")->name('update.subs');
+    Route::post('/uredi-profil', "UserController@updateProfile")->name('update.user.profile');
 
     Route::get('/profil', "UserAndCompanyController@profile")->name('profile');
-    // profile controller ??? edit, and that bullshit
+    Route::get('/uredi-profil', "UserAndCompanyController@editProfile")->name('edit.profile');
 
     Route::get('/sporocila', "MessagesController@messages")->name('messages');
     Route::get('/sporocila/{filter}', "MessagesController@messages")->name('messages.filter');

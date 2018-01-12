@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Auth;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -61,8 +63,9 @@ class RegisterController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'nullable|string|min:6|confirmed',
             'phone' => 'nullable|string|min:9|',
+            'about' => 'required|string',
             'birthday' => 'nullable|string|min:10',
-            /* TODO city, post and education */
+            'cv' => 'required',
         ]);
     }
 
@@ -74,6 +77,24 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+      $cvName = '';
+      if (Input::file('cv')->isValid()) {
+           $destinationPath = public_path('uploads/cvs');
+           $extension = Input::file('cv')->getClientOriginalExtension();
+           $cvName = uniqid().'.'.$extension;
+
+           Input::file('cv')->move($destinationPath, $cvName);
+       }
+       $picName = '';
+       if (Input::file('pic')->isValid()) {
+            $destinationPath = public_path('uploads/pics');
+            $extension = Input::file('pic')->getClientOriginalExtension();
+            $picName = uniqid().'.'.$extension;
+
+            Input::file('pic')->move($destinationPath, $picName);
+        }
+
+
         return User::create([
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
@@ -82,8 +103,10 @@ class RegisterController extends Controller
             'birthday' => $data['birthday'],
             'gender' => $data['gender'],
             'email' => $data['email'],
-            'password' => bcrypt($data['password'])
-            /* TODO city, post and education */
+            'password' => bcrypt($data['password']),
+            'about' =>$data['about'],
+            'pic' => $picName,
+            'cv' => $cvName
         ]);
     }
 

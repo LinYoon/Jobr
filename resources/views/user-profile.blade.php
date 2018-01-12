@@ -3,19 +3,36 @@
 @section('content')
 <div class="container">
   <div class="row">
-      <div class="col-md-8 col-md-offset-2">
-        <h1>{{$user->first_name . ' ' . $user->last_name}}</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        <p>what I do</p>
-        <p>references</p>
-        <p>some other stuff</p>
+      <div class="col-md-8 col-md-offset-2 pt-30">
+        <div class="row">
+          <div class="col-xs-10">
+            <h1>{{$user->first_name . ' ' . $user->last_name}}</h1>
+          </div>
+          <div class="col-xs-2">
+            @if (Auth::guard('web')->check())
+              <a href="{{route('edit.profile')}}"><button class="btn btn-primary">Uredi</button></a>
+            @elseif(Auth::guard('company')->check())
+            <!-- Trigger the modal with a button -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Pošlji sporočilo</button>
+            @endif
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6 col-xs-offset-3 col-md-4 col-md-offset-0">
+              <img src="{{asset('uploads/pics/'.$user->pic)}}">
+          </div>
 
-        @if (Auth::guard('web')->check())
-          <button class="btn btn-primary">Uredi</button>
-        @elseif(Auth::guard('company')->check())
-        <!-- Trigger the modal with a button -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Pošlji sporočilo</button>
+          <div class="col-xs-12 col-md-8">
+            <p>{{$user->about}}</p>
+          </div>
 
+          <div class="col-xs-12 pt-30">
+            <embed src="{{asset('uploads/cvs/'.$user->cv)}}" width="100%" height="600" zoom="90" type='application/pdf'>
+          </div>
+        </div>
+
+
+        <!-- message -->
         <!-- Modal -->
         <div class="modal fade" id="myModal" role="dialog">
           <div class="modal-dialog">
@@ -53,7 +70,6 @@
             </div>
 
           </div>
-        @endif
 
       </div>
     </div>

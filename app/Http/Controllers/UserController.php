@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Input;
 use App\Job;
 use App\Company;
 use App\SubscribeRegion;
@@ -72,5 +73,38 @@ class UserController extends Controller
       }
 
       return redirect()->route('subscriptions');
+    }
+
+    public function updateProfile(Request $request){
+      $user = Auth::guard('web')->user();
+
+       if(null !== Input::file('cv')){
+         if (Input::file('cv')->isValid()) {
+              $destinationPath = public_path('uploads/cvs');
+              $extension = Input::file('cv')->getClientOriginalExtension();
+              $cvName = uniqid().'.'.$extension;
+
+              Input::file('cv')->move($destinationPath, $cvName);
+
+              $user->cv = $cvName;
+          }
+        }
+
+        if(null !== Input::file('pic')){
+          if (Input::file('pic')->isValid()) {
+               $destinationPath = public_path('uploads/pics');
+               $extension = Input::file('pic')->getClientOriginalExtension();
+               $picName = uniqid().'.'.$extension;
+
+               Input::file('pic')->move($destinationPath, $picName);
+
+               $user->pic = $picName;
+           }
+         }
+
+         $user->about = $request->input('about');
+         $user->save();
+
+         return redirect(route('profile'));
     }
 }

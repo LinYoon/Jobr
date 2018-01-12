@@ -42,8 +42,53 @@
                     <ul class="nav navbar-nav navbar-right text-uppercase">
                         <!-- Authentication Links -->
                         @if ( !Auth::guard('web')->check() && !Auth::guard('company')->check())
-                            <li><a href="{{ route('login') }}"><i class="fa fa-sign-in fa-fw"></i> Prijava</a></li>
-                            <li><a href="{{ route('register') }}"><i class="fa fa-user-plus fa-fw"></i> Registracija</a></li>
+                        <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
+                                <i class="fa fa-fw fa-sign-in"></i> Prijava
+                                  <!-- elseif guard = admin -->
+                                    <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu">
+
+                                    <li>
+                                      <a href="{{ route('login.user')}}">
+                                        <i class="fa fa-bar-chart fa-fw"></i> Iskalec zaposlitve
+                                      </a>
+                                    </li>
+                                  
+                                    <li>
+                                      <a href="{{ route('login.company')}}">
+                                        <i class="fa fa-pencil-square-o fa-fw"></i> Podjetje
+                                      </a>
+                                    </li>
+                                  
+                                </ul>
+                            </li>
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
+                                <i class="fa fa-fw fa-user-plus"></i> Registracija
+                                  <!-- elseif guard = admin -->
+                                    <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu">
+
+                                    <li>
+                                      <a href="{{ route('register.user')}}">
+                                        <i class="fa fa-bar-chart fa-fw"></i> Iskalec zaposlitve
+                                      </a>
+                                    </li>
+                                  
+                                    <li>
+                                      <a href="{{ route('register.company')}}">
+                                        <i class="fa fa-pencil-square-o fa-fw"></i> Podjetje
+                                      </a>
+                                    </li>
+                                  
+                                </ul>
+                            </li>
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
@@ -167,6 +212,7 @@
     <script src="{{ asset('js/bootstrap.js') }}"></script>
     <script src="{{ asset('js/wow.min.js') }}"></script>
     <script src="{{ asset('js/custom.js') }}"></script>
+    <script src="{{ asset('js/jobr.js') }}"></script>
     <script>
     // get the value of the bottom of the #main element by adding the offset of that element plus its height, set it as a variable
 //var mainbottom = $('#scroll-past').offset().top + $('#scroll-past').height();

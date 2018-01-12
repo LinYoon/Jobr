@@ -85,9 +85,11 @@ $("#app").on('scroll', function(){
     var stop = Math.round($(window).scrollTop());
 
     if (stop > mainbottom) {
-        $('.navbar-default').css("background", "linear-gradient(to right, rgba(33,147,176,1) 0%,rgba(109,213,237,1) 100%) !important");
+        $(".navbar-default").each(function () {
+			this.style.setProperty( 'background', 'linear-gradient(to right, rgba(33,147,176,1) 0%,rgba(109,213,237,1) 100%)', 'important' );
+		});
     } else {
-        $('.navbar-default').css("background", "transparent !important");
+		this.style.setProperty( 'background', 'transparent', 'important' );
     }
 
 });

@@ -42,8 +42,9 @@ class CompanyController extends Controller
     public function newJob(Request $request){
       $this->newJobValidator($request->all())->validate();
       $data = $request->input();
+
       // Create new job
-      $jobID = Job::create([
+      $job = Job::create([
           'company_id' => Auth::guard('company')->user()->id,
           'job_type_id' => $data['job_type'],
           'category_id' => $data['category'],
@@ -62,8 +63,28 @@ class CompanyController extends Controller
           'address' => $data['address']
       ]);
 
+      // send mail to users if subscribed
+      $users = User::all();
+
+      //TODO change region based on post
+      $region = 1;
+      $category = $data['category'];
+      $type = $data['job_type'];
+
+      foreach ($users as $user) {
+        if($user->isSubbedRegion($region) &&
+          $user->isSubbedCategory($category) &&
+          $user->isSubbedType($type)){
+            Mail::send('email.subscribe', ['job' => $job, 'user' => $user], function($message) use ($user) {
+              $message->subject("Novo delovno mesto za vas");
+              $message->from('noreply@jobr.linyoon.com', 'Jobr');
+              $message->to($user->email);
+            });
+          }
+      }
+
       // Redirect to company view/edit of job
-      return redirect(route('company.job', $jobID));
+      return redirect(route('company.job', $job));
     }
 
     public function showJobStats($id){;
@@ -81,35 +102,102 @@ class CompanyController extends Controller
     }
 
     public function applyYes(Request $request){
-      $apply = Apply::getApplyFromJobAndUser($request->input('job_id'), $request->input('user_id'));
-      $apply->status = 1;
-      $apply->save();
+      $job = Job::find($request->input('job_id'));
+      if($job->status == 0){
+        $apply = Apply::getApplyFromJobAndUser($request->input('job_id'), $request->input('user_id'));
+        $apply->status = 1;
+        $apply->save();
 
-      Mail::send('email.apply-yes', ['apply' => $apply], function($message) use ($apply) {
-        $message->subject("Bili ste sprejeti na delovno mesto");
-        $message->from('noreply@jobr.linyoon.com', 'Jobr');
-        $message->to($apply->user->email);
-      });
+        Mail::send('email.apply-yes', ['apply' => $apply], function($message) use ($apply) {
+          $message->subject("Bili ste sprejeti na delovno mesto");
+          $message->from('noreply@jobr.linyoon.com', 'Jobr');
+          $message->to($apply->user->email);
+        });
+      }
 
       return redirect()->back();
     }
 
     public function applyNo(Request $request){
-      $apply = Apply::getApplyFromJobAndUser($request->input('job_id'), $request->input('user_id'));
-      $apply->status = 2;
-      $apply->save();
+      $job = Job::find($request->input('job_id'));
+      if($job->status == 0){
+        $apply = Apply::getApplyFromJobAndUser($request->input('job_id'), $request->input('user_id'));
+        $apply->status = 2;
+        $apply->save();
 
-      Mail::send('email.apply-no', ['apply' => $apply], function($message) use ($apply) {
-        $message->subject("Niste bili sprejeti na delovno mesto");
-        $message->from('noreply@jobr.linyoon.com', 'Jobr');
-        $message->to($apply->user->email);
-      });
+        Mail::send('email.apply-no', ['apply' => $apply], function($message) use ($apply) {
+          $message->subject("Niste bili sprejeti na delovno mesto");
+          $message->from('noreply@jobr.linyoon.com', 'Jobr');
+          $message->to($apply->user->email);
+        });
+      }
 
       return redirect()->back();
     }
 
+    public function showEditJob($id){
+      $job = Job::find($id);
+
+      $companyID = Auth::guard('company')->user()->id;
+
+      if($companyID == $job->company_id){
+        return view('job-edit')->with('job', $job);
+      }
+      else{
+        return redirect(route('company.dashboard'));
+      }
+    }
+
+    public function updateJob($id, Request $request){
+      $job = Job::find($id);
+
+      $this->newJobValidator($request->all())->validate();
+      $data = $request->input();
 
 
+      $job->update([
+          'job_type_id' => $data['job_type'],
+          'category_id' => $data['category'],
+          'post_id' => ($data['post']),
+          'degree_id' => $data['degree'],
+          'title' => $data['title'],
+          'description' => $data['description'],
+          'position' => $data['position'],
+          'terms' => $data['terms'],
+          'duration' => $data['duration'],
+          'hourly_wage' => $data['hourly_wage'],
+          'home' => $data['home'],
+          'trial' => $data['trial'],
+          'work_time' => $data['work_time'],
+          'weekends' => $data['weekends'],
+          'address' => $data['address']
+      ]);
+
+      $job->save();
+
+      return redirect(route('company.job', $job->id));
+    }
+
+    public function activateJob($id){
+      $job = Job::find($id);
+      $job->status = 0;
+      $job->save();
+      return redirect()->back();
+    }
+
+    public function deactivateJob($id){
+      $job = Job::find($id);
+      $job->status = 1;
+      $job->save();
+      return redirect()->back();
+    }
+
+
+    public function deleteJob($id){
+      $job = Job::find($id);
+      $job->delete();
+      return redirect(route('company.dashboard'));
+    }
     /**
      * Get a validator for an incoming new job request.
      *
@@ -123,10 +211,14 @@ class CompanyController extends Controller
             'description' => 'required|string|max:1024',
             'position' => 'required|string|max:1024',
             'terms' => 'nullable|string|max:1024',
-            'duration' => 'nullable|string|max:4',
-            'hourly_wage' => 'required|max:5',
+            'duration' => 'nullable|numeric',
+            'trial' => 'nullable|numeric',
+            'hourly_wage' => 'required|numeric',
+            'post' => 'required|numeric',
             'work_time' =>'required|max:2',
-            'address' => 'required|string|max:100'
+            'address' => 'required|string|max:100',
+            'weekends' => 'required',
+            'home' => 'required',
         ]);
     }
 

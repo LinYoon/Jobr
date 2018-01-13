@@ -8,3 +8,32 @@ if (splitUrl[splitUrl.length - 1] != "") {
         this.style.setProperty( 'height', '70px', 'important' );
     });
 }
+
+function applyFilter(){
+  $.ajax( {
+      type: "GET",
+      url: $('#filters').attr('action'),
+      data: $('#filters').serialize(),
+      success: function( data ) {
+        $('#job-list').html(data); 
+      }
+  });
+}
+
+
+function changeUserPic(event){
+  event.preventDefault();
+  $('#pic-input').click();
+}
+
+function updatePicPreview(input){
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+
+    reader.onload = function(e) {
+      $('#pic').attr('src', e.target.result);
+    }
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+

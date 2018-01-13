@@ -83,7 +83,7 @@ class CategorySeeder extends Seeder
       ]);
 
       Category::create([
-        'category' => 'rehrambena industrija, živilstvo, veterina'
+        'category' => 'Prehrambena industrija, živilstvo, veterina'
       ]);
 
       Category::create([

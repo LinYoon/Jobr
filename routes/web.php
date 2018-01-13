@@ -1,7 +1,10 @@
 <?php
 
+
 use App\Job;
 use Illuminate\Support\Facades\Input;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,6 +21,8 @@ Route::get('/delo/{id}', 'PagesController@job')->name('job.details');
 Route::post('/delo/{id}', 'PagesController@jobApply')->name('apply');
 Route::get('/podjetja', "PagesController@showCompanies")->name('companies');
 Route::get('/podjejte/{id}', "PagesController@companyProfile")->name('company.profile');
+
+Route::get('/filters', "PagesController@getJobs")->name('getJobs');
 
 Auth::routes();
 
@@ -49,9 +54,12 @@ Route::post('/spremeni-email', 'Auth\ChangeEmailController@changeEmail')->name('
 
 Route::group(['middleware' => 'isVerified'], function () {
     Route::get('/prijave', "UserController@applies")->name('applies');
+    Route::get('/narocnine', "UserController@showSubscriptions")->name('subscriptions');
+    Route::post('/narocnine', "UserController@updateSubscriptions")->name('update.subs');
+    Route::post('/uredi-profil', "UserController@updateProfile")->name('update.user.profile');
 
     Route::get('/profil', "UserAndCompanyController@profile")->name('profile');
-    // profile controller ??? edit, and that bullshit
+    Route::get('/uredi-profil', "UserAndCompanyController@editProfile")->name('edit.profile');
 
     Route::get('/sporocila', "MessagesController@messages")->name('messages');
     Route::get('/sporocila/{filter}', "MessagesController@messages")->name('messages.filter');
@@ -62,6 +70,12 @@ Route::group(['middleware' => 'isVerified'], function () {
     Route::get('/novo-delo', "CompanyController@showNewJobForm")->name('job.new');
     Route::post('/novo-delo', "CompanyController@newJob")->name('job.new');
     Route::get('/podjejte/delo/{id}', "CompanyController@showJobStats")->name('company.job');
+    Route::get('podjetje/uredi-delo/{id}', "CompanyController@showEditJob")->name('job.edit');
+    Route::post('podjetje/uredi-delo/{id}', "CompanyController@updateJob")->name('job.edit');
+    Route::get('/podjejte/skrij/{id}', "CompanyController@activateJob")->name('activate.job');
+    Route::get('/podjejte/prikazi/{id}', "CompanyController@deactivateJob")->name('deactivate.job');
+    Route::get('/podjejte/zbriši/{id}', "CompanyController@deleteJob")->name('delete.job');
+
     Route::get('/uporabnik/{id}', "CompanyController@userProfile")->name('user.profile.company');
     Route::get('/company-dashboard', "CompanyController@index")->name('company.dashboard');
     Route::get('/sprejmi', "CompanyController@applyYes")->name('apply.yes');

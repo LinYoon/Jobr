@@ -135,6 +135,14 @@
                                       @endif
                                     </a>
                                   </li>
+                                  @if(Auth::guard('web')->check())
+                                  <li>
+                                    <a href="{{ route('subscriptions')}}">
+                                      <i class="fa fa-newspaper-o fa-fw"></i> Naročnine
+                                    </a>
+                                  </li>
+                                  @endif
+
 
                                   <li>
                                       <a href="{{ route('logout') }}"
@@ -232,10 +240,8 @@
 
 /*});
 */
-console.log(111);
-</script>
-    <script>
-        new WOW().init();
+
+    new WOW().init();
     </script>
 </body>
 </html>

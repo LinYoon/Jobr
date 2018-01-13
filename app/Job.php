@@ -20,26 +20,20 @@ class Job extends Model
       return $this->belongsTo('\App\Company');
     }
 
-    /**
-     * Get category of job offer
-     * @return string
-     */
+
     public function category(){
-      return $this->belongsTo('\App\Category')->category();
+      return $this->belongsTo('\App\Category');
     }
 
-    /**
-     * Get Post Elequent object for post number in the job offer
-     * @return \App\Company
-     */
+    public function type(){
+      return $this->belongsTo('\App\JobType', 'job_type_id');
+    }
+
     public function post(){
       return $this->belongsTo('\App\Post');
     }
 
-    /**
-     * Get Degree Elequent object for required degree in the job offer
-     * @return \App\Degree
-     */
+
     public function degree(){
       return $this->belongsTo('\App\Degree');
     }

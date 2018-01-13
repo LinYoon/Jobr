@@ -12,12 +12,20 @@ class UserAndCompanyController extends Controller
 {
     public function profile(){
         if(Auth::guard('web')->check()){
-          //TODO get user
           return view('user-profile')->with('user', Auth::guard('web')->user());
         }
         else if(Auth::guard('company')->check()){
-          //TODO get company
           return view('company-profile')->with('company', Auth::guard('company')->user());
+        }
+        return redirect(route('home'));
+    }
+
+    public function editProfile(){
+        if(Auth::guard('web')->check()){
+          return view('user-profile-edit')->with('user', Auth::guard('web')->user());
+        }
+        else if(Auth::guard('company')->check()){
+          return view('company-profile-edit')->with('company', Auth::guard('company')->user());
         }
         return redirect(route('home'));
     }

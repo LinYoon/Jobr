@@ -1,40 +1,49 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="under-nav">
-    <div class="container">
-      <div class="row">
-		  <div class="user-greet row">
-				<div class="col-md-2 free">
-					<span class="num">320+</span> <br/>delovnih mest</span>
-				</div>
-				<div class="col-md-10">
-					<span class="greeting">
-					Pozdravljeni na portalu za iskanje zaposlitve!
-
-					</span>
-					@if (Auth::user())
-						<span class="region"><b>{{Auth::user()->first_name}}</b>, za vas je prikazanih 332 prostih delovnih mest iz vseh regij.</span>
-					@else
-						<span class="region">Za vas je prikazanih <b>332</b> prostih delovnih mest iz vseh regij.</span>
-					@endif
-
-				</div>
-		  </div>
-          <form action="#" method="get">
-            <div class="col-md-10">
-              <input type="text" name="search" class="form-control" id="search" placeholder="Iskanje po ključnih besedah, delodajalcih, kategorijah dela, ...">
-			</div>
-			<div class="col-md-2">
-				<button type="submit" class="btn btn-success"> <i class="fa fa-fw fa-search"></i> Iskanje</button>
-			</div>
-		  </form>
-
+<header class="video-header container">
+        <div class="video-wrapper">
+            <video src="{{ asset('images/video.mp4') }}" autoplay loop></video>
         </div>
-      </div>
-    </div>
-</div>
+        <div class="header-content">
+		<div class="user-greet row">
+		<div class="col-md-10">
+			<span class="greeting">
+			Pozdravljeni na portalu za iskanje zaposlitve!
 
+			</span>
+			@if (Auth::user())
+				<span class="region"><b>{{Auth::user()->first_name}}</b>, za vas je prikazanih 332 prostih delovnih mest iz vseh regij.</span>
+			@else
+				<span class="region">Za vas je prikazanih <b>332</b> prostih delovnih mest iz vseh regij.</span>
+			@endif
+
+		</div>
+  </div>
+  <form action="{{ route('iskanje') }}" method="get" class="search-form" role="search">
+	<div class="col-md-10">
+	  <input type="text" name="q" class="form-control" id="search" placeholder="Iskanje po ključnih besedah, delodajalcih, kategorijah dela, ...">
+	</div>
+	<div class="col-md-2">
+		<button type="submit" class="btn btn-success"> <i class="fa fa-fw fa-search"></i> Iskanje</button>
+	</div>
+  </form>
+        </div>
+        <div class="header-overlay"></div>
+    </header>
+
+<div id="scroll-past" class="popular-categories">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-2"><a href="#"><i class="fa fa-fw fa-envelope-o fa-2x"></i><br>Administracija</a></div>
+			<div class="col-md-2"><a href="#"><i class="fa fa-fw fa-code fa-2x"></i><br>Programiranje</a></div>
+			<div class="col-md-2"><a href="#"><i class="fa fa-fw fa-industry fa-2x"></i><br>Proizvodnja</a></div>
+			<div class="col-md-2"><a href="#"><i class="fa fa-fw fa-h-square fa-2x"></i><br>Zdravstvo</a></div>
+			<div class="col-md-2"><a href="#"><i class="fa fa-fw fa-cutlery fa-2x"></i><br>Gostinstvo</a></div>
+			<div class="col-md-2"><a href="#"><i class="fa fa-fw fa-bar-chart fa-2x"></i><br>Računovodstvo</a></div>
+		</div>
+	</div>
+</div>
 
 <div class="container jobs-container">
     <div class="row jobs-row">
@@ -42,18 +51,14 @@
         <div class="panel panel-default jobs-panel">
           <div class="panel-body">
 		  <nav id="column_left">
-	      <ul class="nav nav-list">
 
-        <form action="{{route('getJobs')}}" method="GET" id="filters">
-          <!--<input type="submit">-->
-        <li><button class="btn btn-info">Počisti vse kriterije</button></li>
-
-        <li>
+		<ul class="nav nav-list">
+			<li><h3 class="jobs-h3">Prosta dela</h3></li>
+		  	<li>
 		    	<a class="accordion-heading" data-toggle="collapse" data-target="#submenu1">
 					  <span class="nav-header-primary">Regija<span class="pull-right"><i class="fa fa-fw fa-plus"></i></span></span>
 					  <span class="criteria">Ni izbranih kriterijev</span>
 		    	</a>
-
 			    <ul class="nav nav-list" id="submenu1" class="submenu">
             @foreach(App\Region::all() as $region)
             <li>
@@ -63,6 +68,7 @@
               </label>
             </li>
             @endforeach
+
 			    </ul>
 			  </li>
 
@@ -150,20 +156,23 @@
             <li>
               <label class="checkbox-inline">
                 <input type="checkbox" value="0" name="home[0]" onchange="applyFilter()">
-                Ja <span class="job-count pull-right">[{{rand(3,20)}}]</span>
+                Ne <span class="job-count pull-right">[{{rand(3,20)}}]</span>
               </label>
             </li>
 
             <li>
               <label class="checkbox-inline">
                 <input type="checkbox" value="1" name="home[1]" onchange="applyFilter()">
-                Ne <span class="job-count pull-right">[{{rand(3,20)}}]</span>
+                Da <span class="job-count pull-right">[{{rand(3,20)}}]</span>
               </label>
             </li>
 
           </ul>
 			  </li>
+        <br>
+		  	  <li><button class="btn btn-info">Počisti vse kriterije</button></li>
       </form>
+
 		</ul>
 
 		</nav>

@@ -10,7 +10,6 @@ http://www.templatemo.com/tm-446-boxer
 @import url(https://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,700,800,900);
 @import url(https://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,700,800,900);
 html {
-    min-height: 100%;
 }
 
 body {
@@ -21,9 +20,8 @@ body {
     */
     font-weight: 300;
     width: 100%;
-    min-height: 100%;
     overflow-x: hidden;
-    padding-top: 70px;
+    padding-top: 60px;
 }
 
 #particles-js {
@@ -138,17 +136,18 @@ img {
 /* start navigation */
 
 .navbar-default {
-    background: #3a4651 !important;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#2193b0+0,6dd5ed+100 */
+background: transparent;
     border: none;
-    box-shadow: 0px 2px 8px 0px rgba(50, 50, 50, 0.08);
     margin: 0!important;
+    padding-top: 15px !important;
 }
 
 .navbar-default .brand {
     color: #fff;
     font-size: 24px;
     font-weight: bold;
-    height: 70px !important;
+    height: 60px !important;
     line-height: 65px !important;
     margin-right: 50px;
     padding-left: 15px;
@@ -160,7 +159,7 @@ img {
         color: #fff;
         font-size: 24px;
         font-weight: bold;
-        height: 70px;
+        height: 60px;
         line-height: 25px;
         margin-right: 5px;
         padding-left: 15px;
@@ -174,7 +173,7 @@ img {
         color: #fff;
         font-size: 24px;
         font-weight: bold;
-        height: 70px;
+        height: 60px;
         line-height: 25px;
         margin-right: 50px;
         padding-left: 15px;
@@ -191,29 +190,31 @@ img {
 .navbar-default .nav li a {
     color: #fff;
     font-size: 14px;
-    height: 70px;
+    height: 60px;
     line-height: 40px;
     padding-left: 10px;
     padding-right: 17px;
 }
 
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:focus, .navbar-default .navbar-nav > .active > a:hover {
-    border-bottom: 3px solid #13bde7;
+    border-bottom: 1px solid #fff;
     background: transparent;
     color: #fff;
 }
 
 .navbar-default .navbar-right li.login-li {
-    background: #13bde7;
+    background: #fff;
+    color: #007FBC !important;
 }
 .navbar-default .navbar-right li.login-li:focus {
-    color: white;
-    background: #007FBC;
+    color: #007FBC;
+    background: #fff;
 }
 
 .navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover {
-    color: white;
-    background: #007FBC;
+    border-radius: 5px;
+    line-height: 32px;
+    color: #007FBC;    background: #fff;
 }
 
 .navbar-nav>li>.dropdown-menu {
@@ -249,7 +250,7 @@ img {
     .navbar-default .nav li a {
         color: #fff;
         font-size: 13px;
-        height: 70px;
+        height: 60px;
         line-height: 40px;
         transition: all 0.1s ease-out;
     }
@@ -269,11 +270,13 @@ img {
 }
 
 .navbar-default .navbar-right li.login-li:hover {
-    background: #007FBC;
+    color: #007FBC;
+    background: #fff;
 }
 
 .navbar-default .navbar-right li.login-li a:hover {
-    color: #fff;
+    background: #fff;
+    color: #007FBC;
 }
 
 .navbar-default .navbar-toggle {
@@ -323,8 +326,15 @@ hr {
 }
 
 .under-nav {
-    background: #efefef;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#2193b0+0,6dd5ed+100 */
+background: rgb(33,147,176); /* Old browsers */
+background: -moz-linear-gradient(left, rgba(33,147,176,1) 0%, rgba(109,213,237,1) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(left, rgba(33,147,176,1) 0%,rgba(109,213,237,1) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to right, rgba(33,147,176,1) 0%,rgba(109,213,237,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2193b0', endColorstr='#6dd5ed',GradientType=1 ); /* IE6-9 */
+padding-top: 20px;
     padding-bottom: 20px;
+    height: 250px;
 }
 
 .under-nav .container {
@@ -355,21 +365,32 @@ hr {
     font-weight: 400;
     display: block;
     padding: 5px 10px;
-    font-size: 24px;
+    font-size: 36px;
+    color: #fff;
+}
+
+.jobs-h3 {
+    margin-top: 0;
+    padding-left: 12px;
 }
 
 .region {
     display: block;
     padding: 5px 10px;
     font-size: 20px;
+    color: #fff;
 }
 
 .jobs-container {
     padding: 0;
 }
 
+.search-form {
+    padding: 0 23px !important;
+}
+
 .jobs-row {
-    padding-top: 20px;
+    padding-top: 40px;
     margin: 0 !important;
 }
 
@@ -717,7 +738,7 @@ form .btn {
 
 /* Noga */
 .footer-container {
-    margin-top: 70px;
+    margin-top: 60px;
     padding-bottom: 20px;
 }
 
@@ -964,3 +985,91 @@ footer {
         position: absolute;
         z-index: -1;
     }
+
+    .popular-categories {
+        background: rgb(33,147,176); /* Old browsers */
+        background: -moz-linear-gradient(left, rgba(33,147,176,1) 0%, rgba(109,213,237,1) 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(left, rgba(33,147,176,1) 0%,rgba(109,213,237,1) 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to right, rgba(33,147,176,1) 0%,rgba(109,213,237,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2193b0', endColorstr='#6dd5ed',GradientType=1 ); /* IE6-9 */
+        padding: 30px 0;
+        text-align: center;
+        color: #fff;
+    }
+
+    .popular-categories .col-md-2 {
+        text-align: center;
+        padding: 10px 20px 10px 20px;
+        border-right: 1px solid rgb(33,147,176);
+        line-height: 40px;
+    }
+
+    .popular-categories .col-md-2 {
+        color: #fff;
+        transition: all 0.1s ease-in-out;
+    }.popular-categories .col-md-2 a {
+        color: #fff;
+        transition: all 0.1s ease-in-out;
+        text-decoration: none;
+    }
+    .popular-categories .col-md-2:hover {
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    .popular-categories .col-md-2:last-child {
+        border-right: none;
+    }
+
+    .video-header {
+        height: 40vh;
+        display: flex;
+        align-items: center;
+        color: #fff;
+        margin-bottom: 38px;
+    }
+    
+    .video-wrapper {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 50vh;
+        overflow: hidden;
+      }
+      
+    .video-wrapper video {
+        min-height: 100%;
+        min-width: 100%;
+    }
+    
+    .header-overlay {
+        height: 50vh;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        z-index: 1;
+        background: #225470;
+        opacity: 0.75;
+    }
+    
+    .header-content {
+        width: 100%;
+        margin: auto;
+        z-index: 2;
+    }
+    
+    .header-content h1 {
+        font-weight: 400;
+        font-size: 4rem;
+        margin-bottom: 2rem;
+    }
+    
+    .header-content p {
+        font-weight: 200;
+        font-size: 1.5rem;
+        display: block;
+        padding-bottom: 3rem;
+    }
+    

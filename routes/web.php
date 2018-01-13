@@ -1,6 +1,9 @@
 <?php
 
-use Illuminate\Http\Request;
+
+use App\Job;
+use Illuminate\Support\Facades\Input;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -78,3 +81,15 @@ Route::group(['middleware' => 'isVerified'], function () {
     Route::get('/sprejmi', "CompanyController@applyYes")->name('apply.yes');
     Route::get('/zavrni', "CompanyController@applyNo")->name('apply.no');
 });
+
+
+Route::get( '/iskanje', function () {
+  $q = Input::get ( 'q' );
+  if($q != ""){
+    $jobs = Job::where('title', 'LIKE', '%' . $q . '%')->orWhere('description', 'LIKE', '%' . $q . '%')->paginate(5)->setPath('');
+    $pagination = $jobs->appends(array ('q' => Input::get('q')));
+    if (count ($jobs) > 0)
+        return view('search')->withDetails($jobs)->withQuery($q);
+  }
+  return view ( 'search' )->withMessage('No details found. Try to search again !' );
+})->name('iskanje');

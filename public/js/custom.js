@@ -75,3 +75,21 @@ $(".previous").click(function(){
 		easing: 'easeInOutBack'
 	});
 });
+
+// get the value of the bottom of the #main element by adding the offset of that element plus its height, set it as a variable
+var mainbottom = $('#scroll-past').offset().top + $('#scroll-past').height();
+// on scroll, 
+$("#app").on('scroll', function(){
+	console.log(1);
+    // we round here to reduce a little workload
+    var stop = Math.round($(window).scrollTop());
+
+    if (stop > mainbottom) {
+        $(".navbar-default").each(function () {
+			this.style.setProperty( 'background', 'linear-gradient(to right, rgba(33,147,176,1) 0%,rgba(109,213,237,1) 100%)', 'important' );
+		});
+    } else {
+		this.style.setProperty( 'background', 'transparent', 'important' );
+    }
+
+});

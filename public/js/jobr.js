@@ -9,22 +9,45 @@ if (splitUrl[splitUrl.length - 1] != "") {
     });
 }
 
+$('#search').submit(function(event){
+  event.preventDefault();
+  applyFilter();
+})
+
 function applyFilter(){
+  let filters = $('#filters').serialize();
+  let search = $('#search').serialize()
+  if(filters.length > 0 ){
+    if(search.length > 0)
+      data = filters.concat('&'+search);
+    else
+      data = filters;
+  }
+  else{
+    data = search
+  }
   $.ajax( {
       type: "GET",
       url: $('#filters').attr('action'),
-      data: $('#filters').serialize(),
+      data: data,
       success: function( data ) {
-        $('#job-list').html(data); 
+        $('#job-list').html(data);
       }
   });
 }
 
+function clearFilters(){
+  $('input:checkbox').removeAttr('checked');
+  $('#search-text').val('');
+  applyFilter();
+}
 
 function changeUserPic(event){
   event.preventDefault();
   $('#pic-input').click();
 }
+
+
 
 function updatePicPreview(input){
   if (input.files && input.files[0]) {
@@ -36,4 +59,3 @@ function updatePicPreview(input){
     reader.readAsDataURL(input.files[0]);
   }
 }
-

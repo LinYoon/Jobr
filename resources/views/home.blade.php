@@ -18,30 +18,18 @@
 
 	     </div>
      </div>
-  <form action="{{ route('iskanje') }}" method="get" class="search-form" role="search">
-	<div class="col-md-10">
-	  <input type="text" name="q" class="form-control" id="search" placeholder="Iskanje po ključnih besedah, delodajalcih, kategorijah dela, ...">
-	</div>
-	<div class="col-md-2">
-		<button type="submit" class="btn btn-success"> <i class="fa fa-fw fa-search"></i> Iskanje</button>
-	</div>
-  </form>
+
+      <form id="search" action="{{ route('getJobs') }}" method="get" class="search-form" role="search">
+    	<div class="col-xs-12 col-md-10">
+    	  <input type="text" name="q" class="form-control" id="search-text" placeholder="Iskanje po ključnih besedah, delodajalcih, kategorijah dela, ...">
+    	</div>
+    	<div id="search-button-wrap" class="col-xs-12 col-md-2">
+    		<button type="button" onclick="applyFilter()" class="btn btn-success"> <i class="fa fa-fw fa-search"></i> Iskanje</button>
+    	</div>
+      </form>
 </div>
 <div class="header-overlay"></div>
 </header>
-
-<div id="scroll-past" class="popular-categories">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-2"><a href="#"><i class="fa fa-fw fa-envelope-o fa-2x"></i><br>Administracija</a></div>
-			<div class="col-md-2"><a href="#"><i class="fa fa-fw fa-code fa-2x"></i><br>Programiranje</a></div>
-			<div class="col-md-2"><a href="#"><i class="fa fa-fw fa-industry fa-2x"></i><br>Proizvodnja</a></div>
-			<div class="col-md-2"><a href="#"><i class="fa fa-fw fa-h-square fa-2x"></i><br>Zdravstvo</a></div>
-			<div class="col-md-2"><a href="#"><i class="fa fa-fw fa-cutlery fa-2x"></i><br>Gostinstvo</a></div>
-			<div class="col-md-2"><a href="#"><i class="fa fa-fw fa-bar-chart fa-2x"></i><br>Računovodstvo</a></div>
-		</div>
-	</div>
-</div>
 
 <div class="container jobs-container">
   <div class="row jobs-row">
@@ -51,7 +39,7 @@
 	         <nav id="column_left">
              <form id="filters" action="{{route('getJobs')}}">
         		  <ul class="nav nav-list">
-        			<li><h3 class="jobs-h3">Prosta dela</h3></li>
+
                 <li>
         		    	<a class="accordion-heading" data-toggle="collapse" data-target="#submenu1">
         					  <span class="nav-header-primary">Regija<span class="pull-right"><i class="fa fa-fw fa-plus"></i></span></span>
@@ -142,11 +130,10 @@
 
                     </ul>
           			  </li>
+              </form>
+              <br>
 
-          <br>
-  		  	  <li><button class="btn btn-info">Počisti vse kriterije</button></li>
-          </form>
-
+  		  	  <li><button type="button" onclick="clearFilters()" class="btn btn-info">Počisti vse kriterije</button></li>
 		        </ul>
 	      </nav>
       </div>
@@ -154,8 +141,6 @@
   </div>
 
   <div class="col-md-8">
-	  <div class="row">
-		  <div class="col-md-6">
         <ul class="pagination">
     		  <li><a>Stran:</a></li>
           <li><a href="#">1</a></li>
@@ -164,22 +149,6 @@
           <li><a href="#">4</a></li>
           <li><a href="#">5</a></li>
         </ul>
-      </div>
-		  <div class="col-md-6">
-			  <div class="row">
-				  <div class="col-md-3" style="line-height: 32px;">
-					  Razvrsti:
-				  </div>
-				  <div class="col-md-9">
-					  <select name="" id="" class="form-control">
-						  <option value="1">A-Z</option>
-						  <option value="1">A-Z</option>
-						  <option value="1">A-Z</option>
-					  </select>
-				  </div>
-			  </div>
-		  </div>
-    </div>
     <div id="job-list">
       @include('inc.job-list')
     </div>

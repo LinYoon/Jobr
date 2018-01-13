@@ -25,8 +25,8 @@ class PagesController extends Controller
 
     public function getJobs(Request $request){
       $jobs = Job::orderBy('updated_at', 'desc');
+      $q = $request->input('q');
 
-      // Apply filters
       if(sizeof($request->input('categories')) > 0){
         $jobs->whereIn('category_id', array_values($request->input('categories')));
       }
@@ -46,6 +46,10 @@ class PagesController extends Controller
 
       if(sizeof($request->input('home')) > 0){
         $jobs->whereIn('home', array_values($request->input('home')));
+      }
+
+      if($q !== ""){
+        $jobs->where('description', 'LIKE', '%' . $q . '%');
       }
 
       return view('inc.job-list')->with('jobs', $jobs->get());

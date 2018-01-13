@@ -34,7 +34,7 @@
 
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav text-uppercase blue">
-                        <li class="active"><a href="{{ route('home') }}"><i class="fa fa-fw fa-list" aria-hidden="true"></i> Delovna mesta</a></li>
+                        <li><a href="{{ route('home') }}"><i class="fa fa-fw fa-list" aria-hidden="true"></i> Delovna mesta</a></li>
                         <li><a href="{{ route('companies') }}"><i class="fa fa-building-o  fa-fw"></i> Podjetja</a></li>
                     </ul>
 
@@ -171,33 +171,24 @@
     <footer>
             <div class="container footer-container">
                 <div class="row">
-                    <div class="col-md-3 col-sm-6 footer-col">
+                    <div class="col-md-3 col-md-offset-2  col-sm-4 footer-col">
                         <div class="logofooter"> JOBR inc.</div>
                         <p><i class="fa fa-map-pin"></i> Večna pot 113, 1000 Ljubljana</p>
                         <p><i class="fa fa-phone"></i> IT oddelek: +386 1 111 11 11 <br /><i class="fa fa-phone"></i> Svetovanje: +386 1 222 22 22 <br /><i class="fa fa-phone"></i> Informacije: +386 1 333 33 33</p>
                         <p><i class="fa fa-envelope"></i> IT oddelek: info@jobr.si <br /><i class="fa fa-envelope"></i> Svetovanje: svet@jobr.si <br /><i class="fa fa-envelope"></i> Informacije: info@jobr.si</p>
-
                     </div>
-                    <div class="col-md-3 col-sm-6 footer-col">
+                    <div class="col-md-3  col-sm-4 footer-col">
                         <h6 class="heading7">POVEZAVE</h6>
                         <ul class="footer-ul">
-                            <li><a href="#"> Delovna mesta</a></li>
-                            <li><a href="#"> Podjetja</a></li>
-                            <li><a href="#"> Novice</a></li>
-                            <li><a href="#"> Piškotki</a></li>
-                            <li><a href="#"> Zemljevid strani</a></li>
-                            <li><a href="#"> O nas</a></li>
-                            <li><a href="#"> Nov uporabnik</a></li>
+                            <li><a href="{{route('home')}}"> Delovna mesta</a></li>
+                            <li><a href="{{route('companies')}}"> Podjetja</a></li>
+                            <li><a href="{{route('login.user')}}"> Prijava</a></li>
+                            <li><a href="{{route('register.user')}}"> Nov uporabnik</a></li>
                         </ul>
                     </div>
-                    <div class="col-md-3 col-sm-6 footer-col">
-                        <h6 class="heading7">ZADNJE NOVICE</h6>
-                        <div class="post">
 
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6 footer-col">
-                        <h6 class="heading7">DRUŽBENA OMREŽJA</h6>
+                    <div class="col-md-3 col-sm-4 footer-col">
+                        <h6 class="heading7">DRUŽABNA OMREŽJA</h6>
                         <p>
                             <ul class="footer-social">
                                 <li><i class="fa fa-linkedin social-icon linked-in" aria-hidden="true"></i></li>

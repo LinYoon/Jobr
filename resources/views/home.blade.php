@@ -117,14 +117,14 @@
                       <li>
                         <label class="checkbox-inline">
                           <input type="checkbox" value="0" name="home[0]" onchange="applyFilter()">
-                          Da
+                          Ne
                         </label>
                       </li>
 
                       <li>
                         <label class="checkbox-inline">
                           <input type="checkbox" value="1" name="home[1]" onchange="applyFilter()">
-                          Ne
+                          Da
                         </label>
                       </li>
 

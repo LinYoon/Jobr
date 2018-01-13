@@ -42,7 +42,7 @@
                 </span>
             @endif
 
-            <input type="radio" name="gender" value="moški" id="r1" checked> <label for="r1"> Moški</label>
+            <input type="radio" name="gender" value="moški" id="r1" checked> <label for="r1"> Moški</label>&nbsp&nbsp
             <input type="radio" name="gender" value="ženski" id="r2"> <label for="r2"> Ženski</label><br>
             <input type="button" name="next" class="next action-button" value="Naprej"/>
         </fieldset>

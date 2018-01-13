@@ -46,7 +46,7 @@ class User extends Authenticatable
 
     // Subscriptions
     public function isSubbedRegion($region_id){
-        return $this->hasMany('\App\SubscribeRegion')->where('region_id', '=', $region_id)->count() > 0;
+        return $this->hasMany('\App\SubscribeRegion')->whereIn('region_id',$region_id)->count() > 0;
     }
 
     public function isSubbedCategory($category_id){

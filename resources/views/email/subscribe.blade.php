@@ -6,7 +6,7 @@
 <p>{{$job->description}}</p>
 <ul>
   <li>
-    Regija: todo
+    Regija: {{$job->post->region->region}}
   </li>
 
   <li>

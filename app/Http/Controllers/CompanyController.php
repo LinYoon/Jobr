@@ -11,6 +11,8 @@ use App\Company;
 use App\User;
 use App\Message;
 use App\Apply;
+use App\Post;
+
 class CompanyController extends Controller
 {
     /**
@@ -66,8 +68,8 @@ class CompanyController extends Controller
       // send mail to users if subscribed
       $users = User::all();
 
-      //TODO change region based on post
-      $region = 1;
+
+      $region = Post::getRegion($data['post']);
       $category = $data['category'];
       $type = $data['job_type'];
 

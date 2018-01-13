@@ -49,27 +49,33 @@ class UserController extends Controller
       $types = $request->input('types');
 
       SubscribeRegion::where('user_id', '=', $user_id)->delete();
-      foreach ($regions as $region => $region_id) {
-        SubscribeRegion::create([
-          'user_id' => $user_id,
-          'region_id' => $region_id
-        ]);
+      if(sizeof($regions) > 0){
+        foreach ($regions as $region => $region_id) {
+          SubscribeRegion::create([
+            'user_id' => $user_id,
+            'region_id' => $region_id
+          ]);
+        }
       }
 
       SubscribeCategory::where('user_id', '=', $user_id)->delete();
-      foreach ($categories as $category => $category_id) {
-        SubscribeCategory::create([
-          'user_id' => $user_id,
-          'category_id' => $category_id
-        ]);
+      if(sizeof($categories) > 0){
+        foreach ($categories as $category => $category_id) {
+          SubscribeCategory::create([
+            'user_id' => $user_id,
+            'category_id' => $category_id
+          ]);
+        }
       }
 
       SubscribeType::where('user_id', '=', $user_id)->delete();
-      foreach ($types as $type => $type_id) {
-        SubscribeType::create([
-          'user_id' => $user_id,
-          'job_type_id' => $type_id
-        ]);
+      if(sizeof($types) > 0){
+        foreach ($types as $type => $type_id) {
+          SubscribeType::create([
+            'user_id' => $user_id,
+            'job_type_id' => $type_id
+          ]);
+        }
       }
 
       return redirect()->route('subscriptions');

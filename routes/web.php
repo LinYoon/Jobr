@@ -67,6 +67,12 @@ Route::group(['middleware' => 'isVerified'], function () {
     Route::get('/novo-delo', "CompanyController@showNewJobForm")->name('job.new');
     Route::post('/novo-delo', "CompanyController@newJob")->name('job.new');
     Route::get('/podjejte/delo/{id}', "CompanyController@showJobStats")->name('company.job');
+    Route::get('podjetje/uredi-delo/{id}', "CompanyController@showEditJob")->name('job.edit');
+    Route::post('podjetje/uredi-delo/{id}', "CompanyController@updateJob")->name('job.edit');
+    Route::get('/podjejte/skrij/{id}', "CompanyController@activateJob")->name('activate.job');
+    Route::get('/podjejte/prikazi/{id}', "CompanyController@deactivateJob")->name('deactivate.job');
+    Route::get('/podjejte/zbriši/{id}', "CompanyController@deleteJob")->name('delete.job');
+
     Route::get('/uporabnik/{id}', "CompanyController@userProfile")->name('user.profile.company');
     Route::get('/company-dashboard', "CompanyController@index")->name('company.dashboard');
     Route::get('/sprejmi', "CompanyController@applyYes")->name('apply.yes');

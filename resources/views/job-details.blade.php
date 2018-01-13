@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container pt-30">
   <div class="row">
       <div class="col-md-8 col-md-offset-2">
           <div class="panel panel-default">
@@ -21,7 +21,7 @@
                     height="300px"
                     frameborder="0" style="border:0"
                     src="https://www.google.com/maps/embed/v1/place?key=AIzaSyD1FTv2w-CRh-ykqfuYpG6zsDJasqwcFdY
-                      &q={{$job->address}}, 1000 Ljubljana" allowfullscreen>
+                      &q={{$job->address}}, {{$job->post_id}} {{$job->post->city}}" allowfullscreen>
                   </iframe>
                   <form method="POST" action="{{route('apply', $job->id)}}">
                     {{ csrf_field() }}

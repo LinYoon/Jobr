@@ -56,13 +56,13 @@
                                         <i class="fa fa-bar-chart fa-fw"></i> Iskalec zaposlitve
                                       </a>
                                     </li>
-                                  
+
                                     <li>
                                       <a href="{{ route('login.company')}}">
                                         <i class="fa fa-pencil-square-o fa-fw"></i> Podjetje
                                       </a>
                                     </li>
-                                  
+
                                 </ul>
                             </li>
 
@@ -80,13 +80,13 @@
                                         <i class="fa fa-bar-chart fa-fw"></i> Iskalec zaposlitve
                                       </a>
                                     </li>
-                                  
+
                                     <li>
                                       <a href="{{ route('register.company')}}">
                                         <i class="fa fa-pencil-square-o fa-fw"></i> Podjetje
                                       </a>
                                     </li>
-                                  
+
                                 </ul>
                             </li>
                         @else
@@ -213,7 +213,7 @@
             </div>
         </footer>
 
-    <!-- Scripts -->  
+    <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/jquery.easing.js') }}"></script>
@@ -224,7 +224,7 @@
     <script>
     // get the value of the bottom of the #main element by adding the offset of that element plus its height, set it as a variable
 //var mainbottom = $('#scroll-past').offset().top + $('#scroll-past').height();
-// on scroll, 
+// on scroll,
 /*$(window).on("scroll", function(){
     console.log(1);
     // we round here to reduce a little workload

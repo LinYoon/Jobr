@@ -9,6 +9,7 @@ use App\Job;
 use App\User;
 use App\Company;
 use App\Apply;
+use App\Post;
 
 
 class PagesController extends Controller
@@ -29,11 +30,11 @@ class PagesController extends Controller
       if(sizeof($request->input('categories')) > 0){
         $jobs->whereIn('category_id', array_values($request->input('categories')));
       }
-      /*
+
       if(sizeof($request->input('regions')) > 0){
-        $jobs->whereIn('region_id', array_values($request->input('regions')));
+        $posts = Post::getPostsFromRegion(array_values($request->input('regions')));
+        $jobs->whereIn('post_id', $posts);
       }
-      */
 
       if(sizeof($request->input('types')) > 0){
         $jobs->whereIn('job_type_id', array_values($request->input('types')));

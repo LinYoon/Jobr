@@ -42,9 +42,6 @@ input[type="radio"] {
   width: auto !important;
 }
 
-.apply-panel{
-  margin: 0 20px;
-}
 
 .apply-success{
   color: #34bf49;

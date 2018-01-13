@@ -7,13 +7,11 @@
           <div class="panel {{$job->status == 0 ? 'panel-info' : 'panel-danger'}}">
             <div class="panel-heading">
               <div class="row">
-                <div class="col-xs-8 col-md-10">
+                <div class="col-xs-10 col-md-10">
                   <h3 class="panel-header"> {{$job->title}}</h3>
                 </div>
                 <div class="col-xs-2 col-md-2" >
-                  @if($job->status == 0)
-                    <a href="{{route('job.edit', $job->id)}}"><button class="btn btn-primary" >Uredi</button></a>
-                  @endif
+                    <a style="float:right" href="{{route('job.edit', $job->id)}}"><button class="btn btn-primary" >Uredi</button></a>
                 </div>
               </div>
             </div>
@@ -22,7 +20,7 @@
                 <p>Opis:{{$job->description}}</p>
               </div>
 
-              <div class="col-md-6">
+              <div class="col-sm-6">
                 <p>Kategorija: {{$job->category->category}}</p>
                 <p>Tip dela: {{$job->type->type}}</p>
                 <p>Pozicija: {{$job->position}}</p>
@@ -30,7 +28,7 @@
                 <p>Naslov: {{$job->address}}</p>
                 <p>Pogoji: {{$job->terms}}</p>
               </div>
-              <div class="col-md-6">
+              <div class="col-sm-6">
                 <p>Urna postavka: {{$job->hourly_wage}}</p>
                 <p>Čas zaposlitve : {{$job->duration}}</p>
                 <p>Preizkusno obdobje : {{$job->trial}}</p>
@@ -41,15 +39,15 @@
             </div>
             <div class="panel-footer">
               <div class="row">
-                <div class="col-xs-5 col-md-3">
+                <div class="col-xs-2 col-md-3">
                   @if($job->status==0)
                     <a href="{{route('deactivate.job', $job->id)}}"><button class="btn btn-warning">Skrij ponudbo</button></a>
                   @else
                     <a href="{{route('activate.job', $job->id)}}"><button class="btn btn-success">Prikaži ponudbo</button></a>
                   @endif
                 </div>
-                <div class="col-xs-5 col-xs-offset-2 col-md-3 col-md-offset-6">
-                  <a href="{{route('delete.job', $job->id)}}"><button class="btn btn-danger">Zbriši ponudbo</button></a>
+                <div class="col-xs-2 col-xs-offset-8 col-md-3 col-md-offset-6">
+                  <a style="float:right" href="{{route('delete.job', $job->id)}}"><button class="btn btn-danger">Zbriši ponudbo</button></a>
                 </div>
               </div>
             </div>

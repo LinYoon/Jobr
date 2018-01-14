@@ -7,13 +7,14 @@
   </div>
 
   <div class="header-content">
+    <span class="scrollpast"></span>
 		<div class="user-greet row">
       <div class="col-md-10">
-	        <span class="greeting">Pozdravljeni na portalu za iskanje zaposlitve!</span>
+	        <span class="greeting">Razpisana delovna mesta</span>
           @if (Auth::user())
-            <span class="region"><b>{{Auth::user()->first_name}}</b>, za vas je prikazanih 332 prostih delovnih mest iz vseh regij.</span>
+            <span class="region"><b>{{Auth::user()->first_name}}</b>, za vas je prikazanih {{count($jobs)}} prostih delovnih mest</span>
           @else
-            <span class="region">Za vas je prikazanih <b>332</b> prostih delovnih mest iz vseh regij.</span>
+            <span class="region">Za vas je prikazanih <b>{{count($jobs)}}</b> prostih delovnih mest</span>
           @endif
 
 	     </div>
@@ -141,7 +142,11 @@
   </div>
 
   <div class="col-md-8">
-        <ul class="pagination">
+    <div id="job-list">
+      @include('inc.job-list')
+    </div>
+    
+    <ul class="pagination">
     		  <li><a>Stran:</a></li>
           <li><a href="#">1</a></li>
           <li><a href="#">2</a></li>
@@ -149,9 +154,6 @@
           <li><a href="#">4</a></li>
           <li><a href="#">5</a></li>
         </ul>
-    <div id="job-list">
-      @include('inc.job-list')
-    </div>
   </div>
   </div>
 </div>

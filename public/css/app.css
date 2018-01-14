@@ -3711,3 +3711,7 @@ pre {
 }
 .option:first-child:after { top: 0; left: 0; }
 .option:last-child:after { right: 0; bottom: 0; }
+
+#app {
+  padding-top: 30px;
+}

@@ -200,6 +200,23 @@ class CompanyController extends Controller
       $job->delete();
       return redirect(route('company.dashboard'));
     }
+
+    public function updateProfile(Request $request){
+      $company = Auth::guard('company')->user();
+      $data = $request->input();
+      $company->update([
+        'name' => $data['name'],
+        'email' => $data['email'],
+        'expertise_area' => $data['expertise_area'],
+        'address' => $data['address'],
+        'phone' => $data['phone'],
+        'davcna' => $data['davcna'],
+        'spletna' => $data['website'],
+        'opis' => $data['desc']
+    ]);
+
+         return redirect(route('profile'));
+    }
     /**
      * Get a validator for an incoming new job request.
      *

@@ -15,7 +15,8 @@ class UserAndCompanyController extends Controller
           return view('user-profile')->with('user', Auth::guard('web')->user());
         }
         else if(Auth::guard('company')->check()){
-          return view('company-profile')->with('company', Auth::guard('company')->user());
+          $jobs = Auth::guard('company')->user()->getCompanyJobs();
+          return view('company-profile')->with(['company' => Auth::guard('company')->user(), 'jobs' => $jobs]);
         }
         return redirect(route('home'));
     }

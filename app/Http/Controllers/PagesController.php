@@ -55,6 +55,11 @@ class PagesController extends Controller
       return view('inc.job-list')->with('jobs', $jobs->get());
     }
 
+    public function showHomepage(){
+      $jobs = Job::orderBy('created_at', 'desc')->take(8)->get();
+      $companies = Company::orderBy('created_at', 'desc')->take(8)->get();
+      return view('welcome')->with(['companies' => $companies, 'jobs' => $jobs]);
+    }
 
     public function showCompanies(){
       $companies = Company::orderBy('name', 'asc')->get();
@@ -101,6 +106,7 @@ class PagesController extends Controller
 
     public function companyProfile($id){
       $company = Company::find($id);
-      return view('company-profile')->with('company', $company);
+      $jobs = Company::find($id)->getCompanyJobs();
+      return view('company-profile')->with(['company' => $company, 'jobs' => $jobs ]);
     }
 }

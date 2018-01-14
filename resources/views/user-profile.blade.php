@@ -26,7 +26,7 @@
             <p>{{$user->about}}</p>
           </div>
 
-          <div class="col-xs-12 pt-30">
+          <div class="col-xs-12 pt-30" style="margin-bottom: 400px;">
             <embed src="{{asset('uploads/cvs/'.$user->cv)}}" width="100%" height="600" zoom="90" type='application/pdf'>
           </div>
         </div>

@@ -126,13 +126,18 @@
                                       <i class="fa fa-envelope-o fa-fw"></i> Sporočila
                                       @if(Auth::guard('company')->check())
                                         @if(sizeof(Auth::guard('company')->user()->unreadMessages()) > 0)
-                                              {{sizeof(Auth::guard('company')->user()->unreadMessages())}}
+                                      <span class="message-count">
+                                              {{sizeof(Auth::guard('company')->user()->unreadMessages())}}  
+                                            </span>
                                         @endif
                                       @else
                                         @if(sizeof(Auth::guard('web')->user()->unreadMessages()) > 0)
+                                      <span class="message-count">
                                           {{sizeof(Auth::guard('web')->user()->unreadMessages())}}
+                                            </span>
                                         @endif
                                       @endif
+
                                     </a>
                                   </li>
                                   @if(Auth::guard('web')->check())
@@ -171,7 +176,7 @@
     <footer>
             <div class="container footer-container">
                 <div class="row">
-                    <div class="col-md-3 col-md-offset-2  col-sm-4 footer-col">
+                    <div class="col-md-3 col-sm-4 footer-col">
                         <div class="logofooter"> JOBR inc.</div>
                         <p><i class="fa fa-map-pin"></i> Večna pot 113, 1000 Ljubljana</p>
                         <p><i class="fa fa-phone"></i> IT oddelek: +386 1 111 11 11 <br /><i class="fa fa-phone"></i> Svetovanje: +386 1 222 22 22 <br /><i class="fa fa-phone"></i> Informacije: +386 1 333 33 33</p>
@@ -200,6 +205,14 @@
                             <br /><br />&nbsp;
                         </p>
                     </div>
+
+                    <div class="col-md-3 col-sm-4 footer-col">
+                    <h6 class="heading7">VEČ...</h6>
+                        <p>
+                        JOBR © 2018, Vse pravice pridržane<br><br>
+                        Izdelava spletne strani: TPO Team
+                        </p>
+                    </div>
                 </div>
             </div>
         </footer>
@@ -212,26 +225,7 @@
     <script src="{{ asset('js/custom.js') }}"></script>
     <script src="{{ asset('js/jobr.js') }}"></script>
     <script>
-    // get the value of the bottom of the #main element by adding the offset of that element plus its height, set it as a variable
-//var mainbottom = $('#scroll-past').offset().top + $('#scroll-past').height();
-// on scroll,
-/*$(window).on("scroll", function(){
-    console.log(1);
-    // we round here to reduce a little workload
-    /*
-    var stop = Math.round($(window).scrollTop());
-
-    if (stop > mainbottom) {
-        $('.navbar-default').css("background", "linear-gradient(to right, rgba(33,147,176,1) 0%,rgba(109,213,237,1) 100%) !important");
-    } else {
-        $('.navbar-default').css("background", "transparent !important");
-    }
-    */
-
-/*});
-*/
-
-    new WOW().init();
+        new WOW().init();
     </script>
 </body>
 </html>

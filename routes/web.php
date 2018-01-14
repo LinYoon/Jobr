@@ -11,7 +11,8 @@
 |
 */
 
-Route::get('/', 'PagesController@showJobs')->name('home');
+Route::get('/', 'PagesController@showHomepage')->name('welcome');
+Route::get('/dela', 'PagesController@showJobs')->name('home');
 Route::get('/delo/{id}', 'PagesController@job')->name('job.details');
 Route::post('/delo/{id}', 'PagesController@jobApply')->name('apply');
 Route::get('/podjetja', "PagesController@showCompanies")->name('companies');
@@ -52,6 +53,7 @@ Route::group(['middleware' => 'isVerified'], function () {
     Route::get('/narocnine', "UserController@showSubscriptions")->name('subscriptions');
     Route::post('/narocnine', "UserController@updateSubscriptions")->name('update.subs');
     Route::post('/uredi-profil', "UserController@updateProfile")->name('update.user.profile');
+    Route::post('/uredi-profil-podjetje', "CompanyController@updateProfile")->name('update.company.profile');
 
     Route::get('/profil', "UserAndCompanyController@profile")->name('profile');
     Route::get('/uredi-profil', "UserAndCompanyController@editProfile")->name('edit.profile');

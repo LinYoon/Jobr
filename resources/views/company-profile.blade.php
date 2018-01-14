@@ -3,15 +3,21 @@
 @section('content')
 <div class="container">
   <div class="row">
-      <div class="col-md-8 col-md-offset-2">
+      <div class="col-md-4">
         <h1>{{$company->name}}</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        <p>what we do</p>
-        <p>Our website</p>
-        <p>some other stuff</p>
+        
+        <p>
+              <img src="{{asset('uploads/pics/'.$company->pic)}}">
+</p>
+        <p>Opis podjetja: {{$company->opis}}</p>
+        <p>Področje delovanja: {{$company->expertise_area}}</p>
+        <p>Spletna stran: {{$company->spletna}}</p>
+        <p>Naslov: {{$company->address}}</p>
+        <p>Davčna številka: {{$company->davcna}}</p>
+        <p>Telefonska številka: {{$company->phone}}</p>
 
         @if (Auth::guard('company')->check())
-          <button class="btn btn-primary">Uredi</button>
+          <a href="{{route('edit.profile')}}"><button class="btn btn-primary">Uredi</button></a>
         @elseif(Auth::guard('web')->check())
         <!-- Trigger the modal with a button -->
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Pošlji sporočilo</button>
@@ -55,6 +61,17 @@
           </div>
         @endif
       </div>
+      <div class="col-md-8">
+      <h1>Razpisane službe</h1>
+        @if (count($jobs) > 0)
+          @foreach ($jobs as $job)
+            @include('inc.job')
+          @endforeach
+        @else
+            Ni razpisanih služb
+        @endif
+      </div>
     </div>
 </div>
+
 @endsection

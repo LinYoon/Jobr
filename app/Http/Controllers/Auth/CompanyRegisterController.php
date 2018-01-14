@@ -58,6 +58,9 @@ class CompanyRegisterController extends Controller
             'expertise_area' => 'nullable|string|max:255',
             'phone' => 'nullable|string|max:12',
             'address' => 'nullable|string|max:255',
+            'davcna' => 'required|string|max:12',
+            'spletna' => 'nullable|string|max:255',
+            'opis' => 'nullable|string|max:1024'
         ]);
     }
 
@@ -76,6 +79,9 @@ class CompanyRegisterController extends Controller
             'expertise_area' => $data['expertise_area'],
             'phone' => $data['phone'],
             'address' => $data['address'],
+            'davcna' => $data['davcna'],
+            'spletna' => $data['website'],
+            'opis' => $data['desc']
         ]);
     }
 

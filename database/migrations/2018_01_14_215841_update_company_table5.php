@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class UpdateCompanyTable extends Migration
+class UpdateCompanyTable5 extends Migration
 {
     /**
      * Run the migrations.
@@ -14,9 +14,7 @@ class UpdateCompanyTable extends Migration
     public function up()
     {
         Schema::table('companies', function (Blueprint $table) {
-          $table->string('davcna')->nullble();
-          $table->string('spletna')->nullable();
-          $table->longText('opis')->nullable();
+            $table->integer('post_id');
         });
     }
 

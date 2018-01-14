@@ -23,17 +23,12 @@
                     <strong>{{ $errors->first('name') }}</strong>
                 </span>
             @endif
-            <input type="text" name="address" placeholder="* Naslov podjetja" value="{{ old('address') }}" required/>
+
+            <input type="text" name="address" placeholder="* Naslov" value="{{ old('address') }}" class="input-70" required />
+            <input type="text" name="post" placeholder="* Poštna številka" value="{{ old('post') }}" class="input-30" required/>
             @if ($errors->has('address'))
                 <span class="help-block">
                     <strong>{{ $errors->first('address') }}</strong>
-                </span>
-            @endif
-            <input type="text" name="city" placeholder="Mesto bivanja" value="{{ old('city') }}" class="input-70" />
-            <input type="text" name="post" placeholder="Poštna številka" value="{{ old('post') }}" class="input-30"/>
-            @if ($errors->has('city'))
-                <span class="help-block">
-                    <strong>{{ $errors->first('city') }}</strong>
                 </span>
             @endif
             @if ($errors->has('post'))
@@ -41,13 +36,13 @@
                     <strong>{{ $errors->first('post') }}</strong>
                 </span>
             @endif
-            <input type="text" name="davcna" placeholder="* Davčna številka" value="{{ old('davcna') }}" />
+            <input type="text" name="davcna" placeholder="* Davčna številka" value="{{ old('davcna') }}" required/>
             @if ($errors->has('davcna'))
                 <span class="help-block">
                     <strong>{{ $errors->first('davcna') }}</strong>
                 </span>
             @endif
-            <input type="text" name="phone" placeholder="* Telefon" value="{{ old('phone') }}" />
+            <input type="text" name="phone" placeholder="* Telefon" value="{{ old('phone') }}" required/>
             @if ($errors->has('phone'))
                 <span class="help-block">
                     <strong>{{ $errors->first('phone') }}</strong>
@@ -70,7 +65,7 @@
                     <strong>{{ $errors->first('expertise_area') }}</strong>
                 </span>
             @endif
-            <textarea name="desc" id="desc" placeholder="Kratek opis podjetja..." value="{{ old('desc') }}" rows="5"></textarea>
+            <textarea name="desc" id="desc" placeholder="Kratek opis podjetja..." rows="5">{{ old('desc') }}</textarea>
             @if ($errors->has('desc'))
                 <span class="help-block">
                     <strong>{{ $errors->first('desc') }}</strong>

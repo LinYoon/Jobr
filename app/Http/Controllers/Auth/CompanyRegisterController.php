@@ -55,12 +55,14 @@ class CompanyRegisterController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:companies',
             'password' => 'required|string|min:6|confirmed',
-            'expertise_area' => 'nullable|string|max:255',
+
             'phone' => 'nullable|string|max:12',
             'address' => 'nullable|string|max:255',
+            'post' => 'nullable|integer',
             'davcna' => 'required|string|max:12',
-            'spletna' => 'nullable|string|max:255',
-            'opis' => 'nullable|string|max:1024'
+            'website' => 'nullable|string|max:255',
+            'expertise_area' => 'required|string|max:255',
+            'desc' => 'required|string|max:1024'
         ]);
     }
 
@@ -77,11 +79,13 @@ class CompanyRegisterController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
             'expertise_area' => $data['expertise_area'],
+
             'phone' => $data['phone'],
             'address' => $data['address'],
             'davcna' => $data['davcna'],
             'spletna' => $data['website'],
-            'opis' => $data['desc']
+            'opis' => $data['desc'],
+            'post_id' => $data['post']
         ]);
     }
 

@@ -19,7 +19,7 @@ class PagesController extends Controller
     }
 
     private function getAllJobs(Request $request){
-      return Job::orderBy('updated_at', 'desc')->get();
+      return Job::orderBy('updated_at', 'desc')->where('status', '=', '0')->get();
     }
 
 
@@ -52,7 +52,7 @@ class PagesController extends Controller
         $jobs->where('description', 'LIKE', '%' . $q . '%');
       }
 
-      return view('inc.job-list')->with('jobs', $jobs->get());
+      return view('inc.job-list')->with('jobs', $jobs->where('status', '=', '0')->get());
     }
 
     public function showHomepage(){
@@ -106,7 +106,7 @@ class PagesController extends Controller
 
     public function companyProfile($id){
       $company = Company::find($id);
-      $jobs = Company::find($id)->getCompanyJobs();
+      $jobs = Company::find($id)->getActiveCompanyJobs();
       return view('company-profile')->with(['company' => $company, 'jobs' => $jobs ]);
     }
 }

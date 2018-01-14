@@ -19,7 +19,11 @@
         </div>
         <div class="row">
           <div class="col-xs-6 col-xs-offset-3 col-md-4 col-md-offset-0">
-              <img src="{{asset('uploads/pics/'.$user->pic)}}">
+            @if($user->pic != "")
+              <img src="{{asset('uploads/pics/'. $user->pic)}}">
+            @else
+                <img src="{{asset('images/user-placeholder.png')}}">
+            @endif
           </div>
 
           <div class="col-xs-12 col-md-8">

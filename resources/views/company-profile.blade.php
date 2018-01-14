@@ -4,16 +4,14 @@
 <div class="container">
   <div class="row">
       <div class="col-md-4">
-        <h1>{{$company->name}}</h1>
-        
-        <p>
-              <img src="{{asset('uploads/pics/'.$company->pic)}}">
-</p>
-        <p>Opis podjetja: {{$company->opis}}</p>
+        <h2>{{$company->name}}</h2>
+
         <p>Področje delovanja: {{$company->expertise_area}}</p>
-        <p>Spletna stran: {{$company->spletna}}</p>
-        <p>Naslov: {{$company->address}}</p>
+        <p>Opis podjetja: {{$company->opis}}</p>
         <p>Davčna številka: {{$company->davcna}}</p>
+        <p>Naslov: {{$company->address}}</p>
+        <p>Spletna stran: <a target="_blank" href="//{{$company->spletna}}">{{$company->spletna}}</a></p>
+        <p>Elektronski naslov: {{$company->email}}</p>
         <p>Telefonska številka: {{$company->phone}}</p>
 
         @if (Auth::guard('company')->check())
@@ -59,10 +57,11 @@
             </div>
 
           </div>
+        </div>
         @endif
       </div>
       <div class="col-md-8">
-      <h1>Razpisane službe</h1>
+      <h3>Razpisane službe</h3>
         @if (count($jobs) > 0)
           @foreach ($jobs as $job)
             @include('inc.job')

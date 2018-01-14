@@ -9,12 +9,16 @@
         <!-- fieldsets -->
         <fieldset>
             <h2 class="fs-title">Prijava v sistem</h2>
+            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
             <input type="text" name="email" placeholder="Email" value="{{ old('email') }}" required/>
             @if ($errors->has('email'))
                 <span class="help-block">
                     <strong>{{ $errors->first('email') }}</strong>
                 </span>
             @endif
+          </div>
+          
+            <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
             <input type="password" name="password" placeholder="Geslo" value="{{ old('password') }}" required/>
             @if ($errors->has('password'))
                 <span class="help-block">

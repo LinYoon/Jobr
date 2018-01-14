@@ -66,6 +66,7 @@ class RegisterController extends Controller
             'about' => 'required|string',
             'birthday' => 'nullable|string|min:10',
             'cv' => 'required',
+            'pic' => 'nullable'
         ]);
     }
 
@@ -85,8 +86,9 @@ class RegisterController extends Controller
 
            Input::file('cv')->move($destinationPath, $cvName);
        }
+
        $picName = '';
-       if (Input::file('pic')->isValid()) {
+       if (Input::file('pic') != null  && Input::file('pic')->isValid()) {
             $destinationPath = public_path('uploads/pics');
             $extension = Input::file('pic')->getClientOriginalExtension();
             $picName = uniqid().'.'.$extension;

@@ -34,6 +34,13 @@ footer{
   text-decoration: underline;
 }
 
+
+.overflow-text{
+  white-space: nowrap;
+  overflow: hidden;
+  width: 100%;
+}
+
 .alert{
   font-weight: 500;
 }
@@ -135,6 +142,39 @@ input[type="radio"] {
 
     .jobs-row .col-md-8 {
       padding: 0 15px;
+    }
+
+    .video-wrapper, .header-overlay {
+      height: inherit;
+    }
+
+    .jobs .jobs-row{
+      padding-top: 0;
+    }
+
+    .header-content{
+      margin-top: -30px;
+    }
+
+
+    .navbar-collapse.collapse.in {
+       background-color: #fff !important;
+       border-bottom: 1px solid #b3b3b3 ;
+    }
+
+    .navbar-collapse.collapse.in li a {
+       color: #000 !important;
+    }
+
+    .navbar-msg li{
+      display: inline-block !important;
+      width: 32%;
+      font-size: 16px;
+    }
+
+    .navbar-msg li a{
+      line-height: 15px !important;
+      text-align: center;
     }
 
 }

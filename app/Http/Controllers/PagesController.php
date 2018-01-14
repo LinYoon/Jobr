@@ -56,7 +56,7 @@ class PagesController extends Controller
     }
 
     public function showHomepage(){
-      $jobs = Job::orderBy('created_at', 'desc')->take(8)->get();
+      $jobs = Job::orderBy('created_at', 'desc')->take(6)->get();
       $companies = Company::orderBy('created_at', 'desc')->take(8)->get();
       return view('welcome')->with(['companies' => $companies, 'jobs' => $jobs]);
     }

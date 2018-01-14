@@ -1,6 +1,6 @@
 var relUrl = window.location.pathname;
 var splitUrl = relUrl.split("/");
-console.log(splitUrl);
+
 if (splitUrl[splitUrl.length - 1] != "" && splitUrl[splitUrl.length - 1] != "dela") {
     //$(".navbar-default").css("background", "linear-gradient(to right, rgba(33,147,176,1) 0%,rgba(109,213,237,1) 100%)");
     $(".navbar-default").css("background", "#3a4651");
@@ -13,15 +13,37 @@ if (splitUrl[splitUrl.length - 1] != "" && splitUrl[splitUrl.length - 1] != "del
 
 $(document).ready(function(){
   footerMargin();
+  if($(window).width() < 480){
+    headerHeight();
 
+    $(".navbar-default").css("background", "#3a4651");
+
+    $(".navbar-default").each(function () {
+        this.style.setProperty( 'padding-top', '0', 'important' );
+        this.style.setProperty( 'height', '70px', 'important' );
+    });
+  }
 });
+
 $(window).resize(function(){
   footerMargin();
+  if($(window).width() < 480){
+    headerHeight();
+  }
 });
+
 
 function footerMargin(){
   var a = parseInt($('footer').css('height'));
   $('body').css('padding-bottom', a + 30);
+}
+
+function headerHeight(){
+  var a = parseInt($('.header-content').css('height'));
+  $('.video-wrapper').css('height', a + 100);
+  $('.header-overlay').css('height', a + 100);
+  $('.video-header ').css('height', a +20);
+
 }
 
 $('#search').submit(function(event){
@@ -78,8 +100,10 @@ function updatePicPreview(input){
 if (splitUrl[splitUrl.length - 1] == "" || splitUrl[splitUrl.length - 1] == "dela") {
   // get the value of the bottom of the #main element by adding the offset of that element plus its height, set it as a variable
   var mainbottom = $('.scrollpast').offset().top + $('.scrollpast').height();
-  // on scroll, 
+  // on scroll,
   $(window).on('scroll', function(){
+
+      
       // we round here to reduce a little workload
       var stop = Math.round($(window).scrollTop());
 

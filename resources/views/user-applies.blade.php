@@ -5,7 +5,7 @@
   <div class="row">
       <div class="col-md-8 col-md-offset-2">
         @if(sizeof($applies) > 0)
-        <h3>Prijavljenja dela.</h3>
+        <h3 style="text-align:center">Prijavljenja dela.</h3>
           @foreach($applies as $apply)
             @include('inc.user-applies')
           @endforeach

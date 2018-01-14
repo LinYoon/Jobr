@@ -13,7 +13,7 @@
               <a href="{{route('edit.profile')}}"><button class="btn btn-primary">Uredi</button></a>
             @elseif(Auth::guard('company')->check())
             <!-- Trigger the modal with a button -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Pošlji sporočilo</button>
+            <button style="float:right" type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Pošlji sporočilo</button>
             @endif
           </div>
         </div>

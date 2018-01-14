@@ -7,13 +7,13 @@
 
         <nav class="navbar navbar-default navbar-custom">
           <div class="container-fluid">
-            <ul class="nav navbar-nav">
+            <ul class="nav navbar-nav navbar-msg">
 
               <li class="{{ Request::is('sporocila') ? 'active' : '' }}">
                 <a href="{{route('messages')}}">Vsa sporočila</a>
               </li>
               <li class="{{ Request::is('sporocila/poslana') ? 'active' : '' }}">
-                <a href="{{route('messages.filter', 'poslana')}}">Poslana sporočila</a>
+                <a href="{{route('messages.filter', 'poslana')}}">Poslana<br>sporočila</a>
               </li>
               <li class="{{ Request::is('sporocila/prejeta') ? 'active' : '' }}">
                 <a href="{{route('messages.filter', 'prejeta')}}">Prejeta sporočila</a>

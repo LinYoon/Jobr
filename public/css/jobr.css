@@ -18,6 +18,9 @@ footer{
   min-height: auto;
 }
 
+.panel-danger.danger-background div{
+  color: #a94442 !important
+}
 
 .apply-name{
   line-height: 35px;

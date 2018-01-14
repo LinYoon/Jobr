@@ -10,7 +10,7 @@
           </div>
           <div class="col-xs-2">
             @if (Auth::guard('web')->check())
-              <a href="{{route('edit.profile')}}"><button class="btn btn-primary">Uredi</button></a>
+              <a href="{{route('edit.profile')}}"><button style="float:right" class="btn btn-primary">Uredi</button></a>
             @elseif(Auth::guard('company')->check())
             <!-- Trigger the modal with a button -->
             <button style="float:right" type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Pošlji sporočilo</button>
